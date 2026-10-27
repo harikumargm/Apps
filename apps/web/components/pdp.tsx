@@ -4,11 +4,10 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { suggestSize } from "@/lib/fit";
-import { inr } from "@/lib/format";
 import { useStore } from "@/lib/store";
 import type { Product } from "@/lib/types";
 import { FabricPanel } from "./fabric-panel";
-import { ProductCard, ProductVisual } from "./product-card";
+import { PriceLine, ProductCard, ProductVisual } from "./product-card";
 import { TryOn } from "./try-on";
 
 export function Pdp({ product, related }: { product: Product; related: Product[] }) {
@@ -39,7 +38,15 @@ export function Pdp({ product, related }: { product: Product; related: Product[]
           {product.edition} · {product.audience} · {product.occasion}
         </p>
         <h1 className="serif mt-2 text-5xl md:text-6xl">{product.name}</h1>
-        <p className="mt-4 text-xl">{inr(product.price)}</p>
+        <div className="mt-4 text-xl">
+          <PriceLine price={product.price} mrp={product.mrp} />
+          {product.rating ? (
+            <p className="deal-rate mt-2">
+              <span className="deal-star">★</span>
+              {product.rating.toFixed(1)}/5 ({product.reviews ?? 0})
+            </p>
+          ) : null}
+        </div>
         <p className="mt-4 max-w-xl text-[var(--muted)]">{product.summary}</p>
         <p className="mt-4 max-w-xl">{product.story}</p>
         <div className="mt-8">

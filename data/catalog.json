@@ -63,7 +63,10 @@
         "M": 8,
         "L": 7,
         "XL": 3
-      }
+      },
+      "mrp": 5450,
+      "rating": 3.8,
+      "reviews": 96
     },
     {
       "id": "p_linen_kurta",
@@ -124,7 +127,10 @@
         "M": 6,
         "L": 5,
         "XL": 2
-      }
+      },
+      "mrp": 8970,
+      "rating": 3.9,
+      "reviews": 149
     },
     {
       "id": "p_bandhgala",
@@ -185,7 +191,10 @@
         "M": 3,
         "L": 3,
         "XL": 1
-      }
+      },
+      "mrp": 23890,
+      "rating": 4.0,
+      "reviews": 202
     },
     {
       "id": "p_twill_trousers",
@@ -246,7 +255,10 @@
         "M": 7,
         "L": 6,
         "XL": 3
-      }
+      },
+      "mrp": 8760,
+      "rating": 4.1,
+      "reviews": 255
     },
     {
       "id": "p_city_shirt",
@@ -311,7 +323,10 @@
         "M": 8,
         "L": 5,
         "XL": 4
-      }
+      },
+      "mrp": 6800,
+      "rating": 4.2,
+      "reviews": 308
     },
     {
       "id": "p_saree",
@@ -366,7 +381,10 @@
       },
       "inventory": {
         "Free": 5
-      }
+      },
+      "mrp": 29530,
+      "rating": 4.3,
+      "reviews": 361
     },
     {
       "id": "p_coord",
@@ -433,7 +451,10 @@
         "M": 5,
         "L": 4,
         "XL": 2
-      }
+      },
+      "mrp": 12690,
+      "rating": 4.4,
+      "reviews": 414
     },
     {
       "id": "p_dress",
@@ -494,7 +515,10 @@
         "S": 3,
         "M": 4,
         "L": 2
-      }
+      },
+      "mrp": 18150,
+      "rating": 4.5,
+      "reviews": 467
     },
     {
       "id": "p_shirtdress",
@@ -557,7 +581,10 @@
         "M": 6,
         "L": 4,
         "XL": 2
-      }
+      },
+      "mrp": 9370,
+      "rating": 3.8,
+      "reviews": 520
     },
     {
       "id": "p_kids_kurta",
@@ -616,7 +643,10 @@
         "2-3Y": 4,
         "4-5Y": 5,
         "6-7Y": 4
-      }
+      },
+      "mrp": 5660,
+      "rating": 3.9,
+      "reviews": 573
     },
     {
       "id": "p_kids_shorts",
@@ -679,7 +709,10 @@
         "2-3Y": 5,
         "4-5Y": 5,
         "6-7Y": 3
-      }
+      },
+      "mrp": 3110,
+      "rating": 4.0,
+      "reviews": 626
     },
     {
       "id": "p_palazzo",
@@ -746,7 +779,10 @@
         "M": 6,
         "L": 4,
         "XL": 3
-      }
+      },
+      "mrp": 5410,
+      "rating": 4.1,
+      "reviews": 679
     },
     {
       "id": "p_olive_tee",
@@ -810,7 +846,10 @@
         "M": 12,
         "L": 10,
         "XL": 6
-      }
+      },
+      "mrp": 3690,
+      "rating": 4.2,
+      "reviews": 732
     },
     {
       "id": "p_teal_tee",
@@ -874,7 +913,10 @@
         "M": 12,
         "L": 10,
         "XL": 6
-      }
+      },
+      "mrp": 3650,
+      "rating": 4.3,
+      "reviews": 785
     },
     {
       "id": "p_royal_tee",
@@ -938,7 +980,10 @@
         "M": 12,
         "L": 10,
         "XL": 6
-      }
+      },
+      "mrp": 4980,
+      "rating": 4.4,
+      "reviews": 838
     },
     {
       "id": "p_mustard_zip",
@@ -1002,7 +1047,10 @@
         "M": 12,
         "L": 10,
         "XL": 6
-      }
+      },
+      "mrp": 3890,
+      "rating": 4.5,
+      "reviews": 891
     },
     {
       "id": "p_white_sport",
@@ -1066,7 +1114,10 @@
         "M": 12,
         "L": 10,
         "XL": 6
-      }
+      },
+      "mrp": 3200,
+      "rating": 3.8,
+      "reviews": 944
     },
     {
       "id": "p_black_tee",
@@ -1130,7 +1181,10 @@
         "M": 12,
         "L": 10,
         "XL": 6
-      }
+      },
+      "mrp": 3310,
+      "rating": 3.9,
+      "reviews": 997
     }
   ]
 }

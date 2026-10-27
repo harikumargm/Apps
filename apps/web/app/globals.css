@@ -403,8 +403,34 @@ img, svg { display: block; max-width: 100%; }
   max-width: 10ch;
 }
 
-.product-meta { font-size: 14px; line-height: 1.35; }
-.product-meta + .product-meta { color: var(--muted); }
+.deal-card {
+  display: block;
+  overflow: hidden;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  background: #fff;
+  color: #212121;
+}
+.deal-card:hover { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); }
+.deal-photo { background: #f7f7f7; aspect-ratio: 3 / 4; overflow: hidden; }
+.deal-photo .art-frame, .deal-photo .product-photo, .deal-photo svg { height: 100%; width: 100%; border: 0; }
+.deal-body { padding: 10px 12px 12px; }
+.deal-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.7em;
+}
+.deal-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; margin-top: 6px; }
+.deal-now { font-size: 16px; font-weight: 700; }
+.deal-mrp { font-size: 13px; color: #878787; text-decoration: line-through; }
+.deal-off { font-size: 13px; font-weight: 600; color: #388e3c; }
+.deal-rate { display: flex; align-items: center; gap: 4px; margin-top: 6px; font-size: 12px; color: #212121; }
+.deal-star { color: #388e3c; font-size: 14px; line-height: 1; }
 
 @media (min-width: 900px) {
   .campaign { grid-template-columns: 1.15fr 0.85fr; }

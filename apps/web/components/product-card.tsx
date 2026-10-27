@@ -22,10 +22,26 @@ export function ProductVisual({
   return <GarmentArt silhouette={silhouette} color={color} weave={weave} name={name} />;
 }
 
+export function discountOff(price: number, mrp?: number) {
+  if (!mrp || mrp <= price) return 0;
+  return Math.round((1 - price / mrp) * 100);
+}
+
+export function PriceLine({ price, mrp }: { price: number; mrp?: number }) {
+  const off = discountOff(price, mrp);
+  return (
+    <p className="deal-price">
+      <span className="deal-now">{inr(price)}</span>
+      {off > 0 && mrp ? <span className="deal-mrp">{inr(mrp)}</span> : null}
+      {off > 0 ? <span className="deal-off">{off}% off</span> : null}
+    </p>
+  );
+}
+
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href={`/product/${product.slug}`} className="group block">
-      <div className="art-frame transition duration-500 group-hover:scale-[1.01]">
+    <Link href={`/product/${product.slug}`} className="deal-card">
+      <div className="deal-photo">
         <ProductVisual
           silhouette={product.silhouette}
           color={product.colors[0].hex}
@@ -34,9 +50,15 @@ export function ProductCard({ product }: { product: Product }) {
           image={product.image}
         />
       </div>
-      <div className="mt-3">
-        <h3 className="product-meta">{product.name}</h3>
-        <p className="product-meta">{inr(product.price)}</p>
+      <div className="deal-body">
+        <h3 className="deal-title">{product.name}</h3>
+        <PriceLine price={product.price} mrp={product.mrp} />
+        {product.rating ? (
+          <p className="deal-rate">
+            <span className="deal-star">★</span>
+            {product.rating.toFixed(1)}/5 ({product.reviews ?? 0})
+          </p>
+        ) : null}
       </div>
     </Link>
   );

@@ -25,6 +25,9 @@ export type Product = {
   audience: string;
   occasion: string;
   price: number;
+  mrp?: number;
+  rating?: number;
+  reviews?: number;
   silhouette: string;
   image?: string;
   summary: string;
