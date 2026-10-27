@@ -7,7 +7,6 @@ import type { Product } from "@/lib/types";
 import { ProductCard } from "./product-card";
 
 const AUDIENCES = ["men", "women"];
-const OCCASIONS = ["festive", "casual", "work"];
 const FABRICS = ["Cotton", "Silk", "Linen", "Synthetic blend"];
 
 const COLLECTIONS = {
@@ -87,24 +86,6 @@ export function CatalogBrowser({ collection }: { collection?: keyof typeof COLLE
         </button>
         {AUDIENCES.map((item) => (
           <button key={item} className={`chip capitalize ${audience === item ? "active" : ""}`} onClick={() => update({ audience: item })}>
-            {item}
-          </button>
-        ))}
-      </FilterGroup>
-      <FilterGroup label="Cut">
-        <button className={`chip ${silhouette === "" ? "active" : ""}`} onClick={() => update({ silhouette: "" })}>
-          All
-        </button>
-        <button className={`chip ${silhouette === "tshirt" ? "active" : ""}`} onClick={() => update({ silhouette: "tshirt" })}>
-          T-Shirts
-        </button>
-      </FilterGroup>
-      <FilterGroup label="Occasion">
-        <button className={`chip ${occasion === "" ? "active" : ""}`} onClick={() => update({ occasion: "" })}>
-          All
-        </button>
-        {OCCASIONS.map((item) => (
-          <button key={item} className={`chip capitalize ${occasion === item ? "active" : ""}`} onClick={() => update({ occasion: item })}>
             {item}
           </button>
         ))}
