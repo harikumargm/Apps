@@ -6,7 +6,7 @@ import { products } from "@/lib/catalog";
 import type { Product } from "@/lib/types";
 import { ProductCard } from "./product-card";
 
-const AUDIENCES = ["men", "women", "kids"];
+const AUDIENCES = ["men", "women"];
 const OCCASIONS = ["festive", "casual", "work"];
 const FABRICS = ["Cotton", "Silk", "Linen", "Synthetic blend"];
 
@@ -35,15 +35,16 @@ export function CatalogBrowser() {
     router.replace(`/catalog?${query.toString()}`, { scroll: false });
   }
 
-  const sizes = useMemo(() => Array.from(new Set(products.flatMap((product) => product.sizes))), []);
+  const shop = useMemo(() => products.filter((product) => product.audience !== "kids"), []);
+  const sizes = useMemo(() => Array.from(new Set(shop.flatMap((product) => product.sizes))), [shop]);
   const colors = useMemo(() => {
     const map = new Map<string, string>();
-    products.forEach((product) => product.colors.forEach((entry) => map.set(entry.name, entry.hex)));
+    shop.forEach((product) => product.colors.forEach((entry) => map.set(entry.name, entry.hex)));
     return Array.from(map.entries());
-  }, []);
+  }, [shop]);
 
   const visible = useMemo(() => {
-    let items = products.slice();
+    let items = shop.slice();
     if (audience) items = items.filter((product) => product.audience === audience);
     if (occasion) items = items.filter((product) => product.occasion === occasion);
     if (silhouette) items = items.filter((product) => product.silhouette === silhouette);
@@ -64,7 +65,7 @@ export function CatalogBrowser() {
     if (sort === "price_asc") items.sort((a, b) => a.price - b.price);
     if (sort === "price_desc") items.sort((a, b) => b.price - a.price);
     return items;
-  }, [audience, occasion, silhouette, fabric, size, color, q, sort, minPrice, maxPrice]);
+  }, [shop, audience, occasion, silhouette, fabric, size, color, q, sort, minPrice, maxPrice]);
 
   function toggleFabric(name: string) {
     const next = fabric.includes(name) ? fabric.filter((item) => item !== name) : [...fabric, name];

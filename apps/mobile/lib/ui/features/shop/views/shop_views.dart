@@ -71,6 +71,7 @@ class _CatalogViewState extends ConsumerState<CatalogView> {
   Widget build(BuildContext context) {
     final shop = ref.watch(shopControllerProvider);
     final items = shop.products.where((product) {
+      if (product.audience == "kids") return false;
       if (audience.isNotEmpty && product.audience != audience) return false;
       if (silhouette.isNotEmpty && product.silhouette != silhouette) return false;
       if (fabric.isNotEmpty && product.fabric.type != fabric) return false;
@@ -83,7 +84,7 @@ class _CatalogViewState extends ConsumerState<CatalogView> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
             children: [
-              for (final entry in ["", "men", "women", "kids"])
+              for (final entry in ["", "men", "women"])
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: ChoiceChip(

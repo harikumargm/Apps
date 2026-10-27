@@ -7,13 +7,12 @@ const DEPARTMENTS = [
   { href: "/catalog?audience=men", label: "Men", line: "Shirts, kurtas, trousers" },
   { href: "/catalog?audience=men&silhouette=tshirt", label: "T-Shirts", line: "Peacock mark, men's cut" },
   { href: "/catalog?audience=women", label: "Women", line: "Sarees, sets, dresses" },
-  { href: "/catalog?audience=kids", label: "Kids", line: "Soft cotton sets" },
   { href: "/catalog?occasion=festive", label: "Festive", line: "Silk for the evening" },
   { href: "/catalog?occasion=casual", label: "Casual", line: "Cloth for the week" },
 ];
 
 export default function HomePage() {
-  const featured = products.filter((product) => product.featured);
+  const featured = products.filter((product) => product.featured && product.audience !== "kids");
   const [lead, ...rest] = featured;
   const side = rest.slice(0, 2);
   return (
