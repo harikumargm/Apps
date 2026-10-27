@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sutra
+      POSTGRES_PASSWORD: sutra
+      POSTGRES_DB: sutra
+    ports:
+      - "5432:5432"
+    volumes:
+      - sutra-pg:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  vision:
+    build:
+      context: .
+      dockerfile: services/vision/Dockerfile
+    environment:
+      SUTRA_INFERENCE_TMP: /tmp/sutra-inference
+    ports:
+      - "8001:8001"
+
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://sutra:sutra@postgres:5432/sutra
+      REDIS_URL: redis://redis:6379/0
+      VISION_URL: http://vision:8001
+      SUTRA_DEMO: "1"
+      SUTRA_SECRET: change-me
+      CATALOG_PATH: /srv/data/catalog.json
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - vision
+
+volumes:
+  sutra-pg:
