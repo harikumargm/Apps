@@ -17,6 +17,7 @@ export function CatalogBrowser() {
 
   const audience = params.get("audience") || "";
   const occasion = params.get("occasion") || "";
+  const silhouette = params.get("silhouette") || "";
   const fabric = params.get("fabric")?.split(",").filter(Boolean) || [];
   const size = params.get("size") || "";
   const color = params.get("color") || "";
@@ -45,6 +46,7 @@ export function CatalogBrowser() {
     let items = products.slice();
     if (audience) items = items.filter((product) => product.audience === audience);
     if (occasion) items = items.filter((product) => product.occasion === occasion);
+    if (silhouette) items = items.filter((product) => product.silhouette === silhouette);
     if (fabric.length) items = items.filter((product) => fabric.includes(product.fabric.type));
     if (size) items = items.filter((product) => product.sizes.includes(size));
     if (color) items = items.filter((product) => product.colors.some((entry) => entry.name === color));
@@ -62,7 +64,7 @@ export function CatalogBrowser() {
     if (sort === "price_asc") items.sort((a, b) => a.price - b.price);
     if (sort === "price_desc") items.sort((a, b) => b.price - a.price);
     return items;
-  }, [audience, occasion, fabric, size, color, q, sort, minPrice, maxPrice]);
+  }, [audience, occasion, silhouette, fabric, size, color, q, sort, minPrice, maxPrice]);
 
   function toggleFabric(name: string) {
     const next = fabric.includes(name) ? fabric.filter((item) => item !== name) : [...fabric, name];
@@ -80,6 +82,14 @@ export function CatalogBrowser() {
             {item}
           </button>
         ))}
+      </FilterGroup>
+      <FilterGroup label="Cut">
+        <button className={`chip ${silhouette === "" ? "active" : ""}`} onClick={() => update({ silhouette: "" })}>
+          All
+        </button>
+        <button className={`chip ${silhouette === "tshirt" ? "active" : ""}`} onClick={() => update({ silhouette: "tshirt" })}>
+          T-Shirts
+        </button>
       </FilterGroup>
       <FilterGroup label="Occasion">
         <button className={`chip ${occasion === "" ? "active" : ""}`} onClick={() => update({ occasion: "" })}>

@@ -7,10 +7,12 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { inr } from "@/lib/format";
 import { lineKey, useStore } from "@/lib/store";
-import { GarmentArt } from "./garment-art";
+import { products } from "@/lib/catalog";
+import { ProductVisual } from "./product-card";
 
 const LINKS = [
   { href: "/catalog?audience=men", label: "Men" },
+  { href: "/catalog?audience=men&silhouette=tshirt", label: "T-Shirts" },
   { href: "/catalog?audience=women", label: "Women" },
   { href: "/catalog?audience=kids", label: "Kids" },
   { href: "/catalog?occasion=festive", label: "Festive" },
@@ -145,7 +147,13 @@ export function Header() {
                   {items.map((item) => (
                     <li key={lineKey(item)} className="grid grid-cols-[84px_1fr] gap-3">
                       <div className="art-frame">
-                        <GarmentArt silhouette={item.silhouette} color={item.hex} weave="plain" name={item.name} />
+                        <ProductVisual
+                          silhouette={item.silhouette}
+                          color={item.hex}
+                          weave="plain"
+                          name={item.name}
+                          image={products.find((product) => product.slug === item.slug)?.image}
+                        />
                       </div>
                       <div>
                         <Link href={`/product/${item.slug}`} onClick={() => setCartOpen(false)} className="serif text-xl">

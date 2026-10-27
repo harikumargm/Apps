@@ -65,12 +65,14 @@ class CatalogView extends ConsumerStatefulWidget {
 class _CatalogViewState extends ConsumerState<CatalogView> {
   String audience = "";
   String fabric = "";
+  String silhouette = "";
 
   @override
   Widget build(BuildContext context) {
     final shop = ref.watch(shopControllerProvider);
     final items = shop.products.where((product) {
       if (audience.isNotEmpty && product.audience != audience) return false;
+      if (silhouette.isNotEmpty && product.silhouette != silhouette) return false;
       if (fabric.isNotEmpty && product.fabric.type != fabric) return false;
       return true;
     }).toList();
@@ -90,6 +92,12 @@ class _CatalogViewState extends ConsumerState<CatalogView> {
                     onSelected: (_) => setState(() => audience = entry),
                   ),
                 ),
+              ChoiceChip(
+                label: const Text("T-Shirts"),
+                selected: silhouette == "tshirt",
+                onSelected: (_) => setState(() => silhouette = silhouette == "tshirt" ? "" : "tshirt"),
+              ),
+              const SizedBox(width: 8),
               for (final entry in ["Cotton", "Silk", "Linen", "Synthetic blend"])
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
@@ -139,9 +147,11 @@ class ProductTile extends ConsumerWidget {
         children: [
           AspectRatio(
             aspectRatio: 4 / 5,
-            child: CustomPaint(
-              painter: GarmentPainter(color: _parseHex(product.colors.first.hex), weave: product.fabric.weave),
-            ),
+            child: product.image == null
+                ? CustomPaint(
+                    painter: GarmentPainter(color: _parseHex(product.colors.first.hex), weave: product.fabric.weave),
+                  )
+                : Image.asset(_assetFor(product.image!), fit: BoxFit.contain),
           ),
           const SizedBox(height: 8),
           Text(product.fabric.type, style: const TextStyle(fontSize: 11, letterSpacing: 1, color: SutraColors.muted)),
@@ -177,9 +187,11 @@ class _ProductViewState extends ConsumerState<ProductView> {
         children: [
           AspectRatio(
             aspectRatio: 4 / 5,
-            child: CustomPaint(
-              painter: GarmentPainter(color: _parseHex(swatch.hex), weave: product.fabric.weave),
-            ),
+            child: product.image == null
+                ? CustomPaint(
+                    painter: GarmentPainter(color: _parseHex(swatch.hex), weave: product.fabric.weave),
+                  )
+                : Image.asset(_assetFor(product.image!), fit: BoxFit.contain),
           ),
           const SizedBox(height: 16),
           Text(product.name, style: const TextStyle(fontSize: 32)),
@@ -380,6 +392,11 @@ class _AccountViewState extends ConsumerState<AccountView> {
       ],
     );
   }
+}
+
+String _assetFor(String image) {
+  final name = image.split("/").last;
+  return "assets/catalog/$name";
 }
 
 Color _parseHex(String hex) {

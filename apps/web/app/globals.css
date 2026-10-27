@@ -169,6 +169,13 @@ img, svg { display: block; max-width: 100%; }
   box-shadow: inset 0 0 0 1px var(--line);
 }
 
+.product-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f7f7f5;
+}
+
 .announce {
   background: var(--ink);
   color: var(--paper);
@@ -261,10 +268,15 @@ img, svg { display: block; max-width: 100%; }
 
 .dept-grid {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 @media (min-width: 800px) {
-  .dept-grid { grid-template-columns: repeat(5, 1fr); }
+  .dept-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1100px) {
+  .dept-grid { grid-template-columns: repeat(6, 1fr); }
 }
 
 .dept-card {

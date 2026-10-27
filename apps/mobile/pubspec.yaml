@@ -23,5 +23,6 @@ flutter:
   assets:
     - assets/brand/vastram-mark.jpg
     - assets/brand/vastram-lockup.jpg
+    - assets/catalog/
   shaders:
     - shaders/weave.frag

@@ -65,6 +65,7 @@ def filter_products(
     *,
     audience: str | None = None,
     occasion: str | None = None,
+    silhouette: str | None = None,
     fabric: list[str] | None = None,
     size: list[str] | None = None,
     color: list[str] | None = None,
@@ -78,6 +79,8 @@ def filter_products(
         items = [p for p in items if p["audience"] == audience or audience in p["departments"]]
     if occasion:
         items = [p for p in items if p["occasion"] == occasion or occasion in p["departments"]]
+    if silhouette:
+        items = [p for p in items if p["silhouette"] == silhouette]
     if fabric:
         wanted = {name.lower() for name in fabric}
         items = [p for p in items if p["fabric"]["type"].lower() in wanted]

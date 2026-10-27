@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { inr } from "@/lib/format";
 import { lineKey, useStore } from "@/lib/store";
-import { GarmentArt } from "@/components/garment-art";
+import { ProductVisual } from "@/components/product-card";
+import { products } from "@/lib/catalog";
 
 export default function CartPage() {
   const items = useStore((state) => state.items);
@@ -23,7 +24,13 @@ export default function CartPage() {
             {items.map((item) => (
               <li key={lineKey(item)} className="grid grid-cols-[120px_1fr] gap-4 border-b border-[var(--line)] pb-5">
                 <div className="art-frame">
-                  <GarmentArt silhouette={item.silhouette} color={item.hex} weave="plain" name={item.name} />
+                  <ProductVisual
+                    silhouette={item.silhouette}
+                    color={item.hex}
+                    weave="plain"
+                    name={item.name}
+                    image={products.find((product) => product.slug === item.slug)?.image}
+                  />
                 </div>
                 <div>
                   <Link href={`/product/${item.slug}`} className="serif text-3xl">

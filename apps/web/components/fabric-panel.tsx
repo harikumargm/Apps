@@ -7,7 +7,7 @@ export function FabricPanel({ fabric }: { fabric: Fabric }) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="eyebrow">Trust note</p>
-          <h2 className="serif mt-1 text-3xl">AI Verified Fabric Breakdown</h2>
+          <h2 className="serif mt-1 text-3xl">{fabric.ai_verified ? "AI Verified Fabric Breakdown" : "Fabric breakdown"}</h2>
         </div>
         <span className="border border-[var(--good)] px-2 py-1 text-xs text-[var(--good)]">
           {Math.round(fabric.confidence * 100)}%

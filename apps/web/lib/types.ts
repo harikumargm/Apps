@@ -26,6 +26,7 @@ export type Product = {
   occasion: string;
   price: number;
   silhouette: string;
+  image?: string;
   summary: string;
   story: string;
   colors: Colorway[];

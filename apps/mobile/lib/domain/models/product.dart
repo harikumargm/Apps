@@ -67,6 +67,7 @@ class Product {
     required this.colors,
     required this.sizes,
     required this.fabric,
+    this.image,
   });
 
   final String id;
@@ -77,6 +78,7 @@ class Product {
   final int price;
   final String silhouette;
   final String summary;
+  final String? image;
   final List<Colorway> colors;
   final List<String> sizes;
   final FabricInfo fabric;
@@ -94,6 +96,7 @@ class Product {
       colors: (json["colors"] as List).map((row) => Colorway.fromJson(row as Map<String, dynamic>)).toList(),
       sizes: (json["sizes"] as List).map((row) => row as String).toList(),
       fabric: FabricInfo.fromJson(json["fabric"] as Map<String, dynamic>),
+      image: json["image"] as String?,
     );
   }
 }

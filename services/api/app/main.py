@@ -511,6 +511,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def list_products(
         audience: str | None = None,
         occasion: str | None = None,
+        silhouette: str | None = None,
         fabric: str | None = None,
         size: str | None = None,
         color: str | None = None,
@@ -523,6 +524,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             settings.catalog_path,
             audience=audience,
             occasion=occasion,
+            silhouette=silhouette,
             fabric=_split(fabric),
             size=_split(size),
             color=_split(color),

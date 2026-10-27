@@ -8,8 +8,7 @@ import { inr } from "@/lib/format";
 import { useStore } from "@/lib/store";
 import type { Product } from "@/lib/types";
 import { FabricPanel } from "./fabric-panel";
-import { GarmentArt } from "./garment-art";
-import { ProductCard } from "./product-card";
+import { ProductCard, ProductVisual } from "./product-card";
 import { TryOn } from "./try-on";
 
 export function Pdp({ product, related }: { product: Product; related: Product[] }) {
@@ -26,7 +25,13 @@ export function Pdp({ product, related }: { product: Product; related: Product[]
     <article className="page grid gap-10 py-8 lg:grid-cols-2">
       <div className="lg:sticky lg:top-24 lg:self-start">
         <div className="art-frame">
-          <GarmentArt silhouette={product.silhouette} color={color.hex} weave={product.fabric.weave} name={product.name} />
+          <ProductVisual
+            silhouette={product.silhouette}
+            color={color.hex}
+            weave={product.fabric.weave}
+            name={product.name}
+            image={product.image}
+          />
         </div>
       </div>
       <div>
