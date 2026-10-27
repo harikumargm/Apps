@@ -12,11 +12,7 @@ import { ProductVisual } from "./product-card";
 
 const LINKS = [
   { href: "/catalog?audience=men", label: "Men" },
-  { href: "/catalog?audience=men&silhouette=tshirt", label: "T-Shirts" },
   { href: "/catalog?audience=women", label: "Women" },
-  { href: "/catalog?audience=kids", label: "Kids" },
-  { href: "/catalog?occasion=festive", label: "Festive" },
-  { href: "/catalog?occasion=casual", label: "Casual" },
   { href: "/trial", label: "Trial-View" },
 ];
 
