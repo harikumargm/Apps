@@ -756,7 +756,8 @@
       "departments": [
         "men",
         "tshirts",
-        "casual"
+        "casual",
+        "sportwear"
       ],
       "audience": "men",
       "occasion": "casual",
@@ -819,7 +820,8 @@
       "departments": [
         "men",
         "tshirts",
-        "casual"
+        "casual",
+        "activewear"
       ],
       "audience": "men",
       "occasion": "casual",
@@ -882,7 +884,8 @@
       "departments": [
         "men",
         "tshirts",
-        "casual"
+        "casual",
+        "sportwear"
       ],
       "audience": "men",
       "occasion": "casual",
@@ -945,7 +948,8 @@
       "departments": [
         "men",
         "tshirts",
-        "casual"
+        "casual",
+        "activewear"
       ],
       "audience": "men",
       "occasion": "casual",
@@ -1008,7 +1012,8 @@
       "departments": [
         "men",
         "tshirts",
-        "casual"
+        "casual",
+        "sportwear"
       ],
       "audience": "men",
       "occasion": "casual",
@@ -1071,7 +1076,8 @@
       "departments": [
         "men",
         "tshirts",
-        "casual"
+        "casual",
+        "activewear"
       ],
       "audience": "men",
       "occasion": "casual",

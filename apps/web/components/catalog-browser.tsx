@@ -10,7 +10,12 @@ const AUDIENCES = ["men", "women"];
 const OCCASIONS = ["festive", "casual", "work"];
 const FABRICS = ["Cotton", "Silk", "Linen", "Synthetic blend"];
 
-export function CatalogBrowser() {
+const COLLECTIONS = {
+  activewear: "Activewear",
+  sportwear: "Sportwear",
+} as const;
+
+export function CatalogBrowser({ collection }: { collection?: keyof typeof COLLECTIONS }) {
   const params = useSearchParams();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -32,7 +37,8 @@ export function CatalogBrowser() {
       if (!value) query.delete(key);
       else query.set(key, value);
     }
-    router.replace(`/catalog?${query.toString()}`, { scroll: false });
+    const path = collection ? `/catalog/${collection}` : "/catalog";
+    router.replace(`${path}?${query.toString()}`, { scroll: false });
   }
 
   const shop = useMemo(() => products.filter((product) => product.audience !== "kids"), []);
@@ -45,6 +51,7 @@ export function CatalogBrowser() {
 
   const visible = useMemo(() => {
     let items = shop.slice();
+    if (collection) items = items.filter((product) => product.departments.includes(collection));
     if (audience) items = items.filter((product) => product.audience === audience);
     if (occasion) items = items.filter((product) => product.occasion === occasion);
     if (silhouette) items = items.filter((product) => product.silhouette === silhouette);
@@ -65,7 +72,7 @@ export function CatalogBrowser() {
     if (sort === "price_asc") items.sort((a, b) => a.price - b.price);
     if (sort === "price_desc") items.sort((a, b) => b.price - a.price);
     return items;
-  }, [shop, audience, occasion, silhouette, fabric, size, color, q, sort, minPrice, maxPrice]);
+  }, [shop, collection, audience, occasion, silhouette, fabric, size, color, q, sort, minPrice, maxPrice]);
 
   function toggleFabric(name: string) {
     const next = fabric.includes(name) ? fabric.filter((item) => item !== name) : [...fabric, name];
@@ -164,7 +171,7 @@ export function CatalogBrowser() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="eyebrow">The edit</p>
-          <h1 className="serif text-5xl md:text-6xl">Catalog</h1>
+          <h1 className="serif text-5xl md:text-6xl">{collection ? COLLECTIONS[collection] : "Catalog"}</h1>
         </div>
         <div className="flex items-center gap-3">
           <button className="btn btn-line md:hidden" onClick={() => setOpen((value) => !value)}>

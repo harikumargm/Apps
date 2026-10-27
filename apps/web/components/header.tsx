@@ -13,6 +13,8 @@ import { ProductVisual } from "./product-card";
 const LINKS = [
   { href: "/catalog?audience=men", label: "Men" },
   { href: "/catalog?audience=women", label: "Women" },
+  { href: "/catalog/activewear", label: "Activewear" },
+  { href: "/catalog/sportwear", label: "Sportwear" },
   { href: "/trial", label: "Trial-View" },
 ];
 
