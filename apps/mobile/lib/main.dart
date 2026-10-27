@@ -38,7 +38,7 @@ class _StudioShellState extends State<StudioShell> {
     const pages = [HomeView(), CatalogView(), BagView(), AccountView()];
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sai Cotton Vastram Store", style: TextStyle(fontSize: 18)),
+        title: const BrandLockup(),
       ),
       body: pages[index],
       bottomNavigationBar: NavigationBar(

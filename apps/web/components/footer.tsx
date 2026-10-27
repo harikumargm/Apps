@@ -5,8 +5,7 @@ export function Footer() {
     <footer className="mt-24 border-t border-[var(--line)]">
       <div className="page grid gap-10 py-12 md:grid-cols-4">
         <div>
-          <p className="logo-mark text-[28px]">Sai Cotton</p>
-          <p className="logo-sub">Vastram Store</p>
+          <img src="/brand/vastram-lockup.jpg" alt="Vastram — your premium quality clothing" className="brand-plate" />
           <p className="mt-3 max-w-xs text-sm text-[var(--muted)]">
             Readymade clothing. Cloth is declared by the mill, then checked. Trial photos leave the inference server when the preview returns.
           </p>

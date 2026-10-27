@@ -179,20 +179,48 @@ img, svg { display: block; max-width: 100%; }
   padding: 8px 16px;
 }
 
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-mark {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f4f1e8;
+  flex: none;
+}
+
 .logo-mark {
   font-family: var(--font-serif), Georgia, serif;
   font-size: 22px;
   line-height: 0.95;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a6a2a;
 }
 
 .logo-sub {
   display: block;
-  margin-top: 3px;
+  margin-top: 4px;
   font-size: 10px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--muted);
+}
+
+.brand-plate {
+  width: min(220px, 100%);
+  background: #f6f3eb;
+  padding: 10px 10px 14px;
+}
+
+@media (max-width: 520px) {
+  .logo-sub { display: none; }
+  .brand-mark { width: 44px; height: 44px; }
 }
 
 .hero-band {

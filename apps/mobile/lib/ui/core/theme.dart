@@ -26,3 +26,26 @@ ThemeData sutraTheme() {
     ),
   );
 }
+
+class BrandLockup extends StatelessWidget {
+  const BrandLockup({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Image(image: AssetImage("assets/brand/vastram-mark.jpg"), width: 36, height: 36),
+        SizedBox(width: 10),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("VASTRAM", style: TextStyle(fontSize: 15, letterSpacing: 2, fontWeight: FontWeight.w600, color: Color(0xFF8A6A2A))),
+            Text("premium quality clothing", style: TextStyle(fontSize: 10, color: SutraColors.muted)),
+          ],
+        ),
+      ],
+    );
+  }
+}

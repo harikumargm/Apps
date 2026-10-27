@@ -29,6 +29,8 @@ class HomeView extends ConsumerWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
       children: [
+        const Image(image: AssetImage("assets/brand/vastram-lockup.jpg"), height: 220),
+        const SizedBox(height: 16),
         const Text("MONSOON 2026", style: TextStyle(letterSpacing: 2, fontSize: 11, color: SutraColors.muted)),
         const SizedBox(height: 8),
         const Text("The cloth,\nafter the loom.", style: TextStyle(fontSize: 42, height: 0.95, fontFamily: "serif")),
@@ -169,7 +171,7 @@ class _ProductViewState extends ConsumerState<ProductView> {
     final product = widget.product;
     final swatch = product.colors.firstWhere((entry) => entry.name == color);
     return Scaffold(
-      appBar: AppBar(title: const Text("Sai Cotton Vastram Store", style: TextStyle(fontSize: 18))),
+      appBar: AppBar(title: const BrandLockup()),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [

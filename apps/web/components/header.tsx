@@ -46,9 +46,12 @@ export function Header() {
         <button className="md:hidden" aria-label="Open menu" onClick={() => setMenu(true)}>
           <Menu size={20} />
         </button>
-        <Link href="/" className="shrink-0">
-          <span className="logo-mark">Sai Cotton</span>
-          <span className="logo-sub">Vastram Store</span>
+        <Link href="/" className="brand-lockup shrink-0" aria-label="Vastram home">
+          <img src="/brand/vastram-mark.jpg" alt="" width={52} height={52} className="brand-mark" />
+          <span>
+            <span className="logo-mark">Vastram</span>
+            <span className="logo-sub">Premium quality clothing</span>
+          </span>
         </Link>
         <nav className="hidden items-center gap-5 md:flex">
           {LINKS.map((link) => (
@@ -96,10 +99,13 @@ export function Header() {
               onClick={(event) => event.stopPropagation()}
             >
               <div className="flex items-center justify-between p-5">
-                <span>
-                  <span className="logo-mark">Sai Cotton</span>
-                  <span className="logo-sub">Vastram Store</span>
-                </span>
+                <Link href="/" className="brand-lockup" onClick={() => setMenu(false)} aria-label="Vastram home">
+                  <img src="/brand/vastram-mark.jpg" alt="" width={52} height={52} className="brand-mark" />
+                  <span>
+                    <span className="logo-mark">Vastram</span>
+                    <span className="logo-sub">Premium quality clothing</span>
+                  </span>
+                </Link>
                 <button aria-label="Close menu" onClick={() => setMenu(false)}>
                   <X />
                 </button>
