@@ -111,10 +111,10 @@ export function Pdp({ product, related }: { product: Product; related: Product[]
               role="dialog"
               aria-modal="true"
               aria-label="Trial view"
-              className="fixed inset-x-0 bottom-0 z-50 max-h-[92vh] overflow-auto border border-[var(--line)] bg-[var(--paper)] p-5 md:inset-8"
-              initial={{ y: 24, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 24, opacity: 0 }}
+              className="trial-dialog"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={(event) => event.stopPropagation()}
             >
               <div className="mb-4 flex items-start justify-between gap-4">

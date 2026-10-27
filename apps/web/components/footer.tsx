@@ -5,7 +5,8 @@ export function Footer() {
     <footer className="mt-24 border-t border-[var(--line)]">
       <div className="page grid gap-10 py-12 md:grid-cols-4">
         <div>
-          <p className="serif text-3xl leading-tight">Sai Cotton Vastram Store</p>
+          <p className="logo-mark text-[28px]">Sai Cotton</p>
+          <p className="logo-sub">Vastram Store</p>
           <p className="mt-3 max-w-xs text-sm text-[var(--muted)]">
             Readymade clothing. Cloth is declared by the mill, then checked. Trial photos leave the inference server when the preview returns.
           </p>
