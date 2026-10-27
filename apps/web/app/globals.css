@@ -213,6 +213,8 @@ img, svg { display: block; max-width: 100%; }
   flex: none;
 }
 
+.footer-mark { width: 48px; height: 48px; }
+
 .logo-mark {
   font-family: var(--font-serif), "Times New Roman", serif;
   font-size: 32px;
