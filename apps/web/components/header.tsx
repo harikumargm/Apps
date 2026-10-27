@@ -40,18 +40,17 @@ export function Header() {
   }, [cartOpen, menu]);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[var(--line)] bg-[var(--paper)]/92 backdrop-blur">
-      <div className="announce">Cotton house · Complimentary shipping above ₹2,500</div>
-      <div className="page flex h-[76px] items-center gap-6">
+    <header className="sticky top-0 z-30 border-b border-[var(--line)] bg-[var(--paper)]">
+      <Link href="/catalog" className="announce">
+        Complimentary shipping above ₹2,500 →
+      </Link>
+      <div className="page flex h-[64px] items-center gap-6">
         <button className="md:hidden" aria-label="Open menu" onClick={() => setMenu(true)}>
           <Menu size={20} />
         </button>
         <Link href="/" className="brand-lockup shrink-0" aria-label="Vastram home">
-          <img src="/brand/vastram-mark.jpg" alt="" width={52} height={52} className="brand-mark" />
-          <span>
-            <span className="logo-mark">Vastram</span>
-            <span className="logo-sub">Premium quality clothing</span>
-          </span>
+          <img src="/brand/vastram-mark.jpg" alt="" width={36} height={36} className="brand-mark" />
+          <span className="logo-mark">Vastram</span>
         </Link>
         <nav className="hidden items-center gap-5 md:flex">
           {LINKS.map((link) => (
@@ -61,20 +60,20 @@ export function Header() {
           ))}
         </nav>
         <form
-          className="ml-auto hidden min-w-[220px] items-center gap-2 border border-[var(--line)] px-3 md:flex"
+          className="site-search ml-auto hidden md:flex"
           onSubmit={(event) => {
             event.preventDefault();
             router.push(query ? `/catalog?q=${encodeURIComponent(query)}` : "/catalog");
           }}
         >
-          <Search size={16} />
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search cloth"
-            aria-label="Search cloth"
-            className="h-10 w-full bg-transparent outline-none"
+            placeholder="Search"
+            aria-label="Search"
+            className="w-full bg-transparent outline-none"
           />
+          <Search size={16} />
         </form>
         <button
           aria-label="Toggle colour mode"
@@ -100,11 +99,8 @@ export function Header() {
             >
               <div className="flex items-center justify-between p-5">
                 <Link href="/" className="brand-lockup" onClick={() => setMenu(false)} aria-label="Vastram home">
-                  <img src="/brand/vastram-mark.jpg" alt="" width={52} height={52} className="brand-mark" />
-                  <span>
-                    <span className="logo-mark">Vastram</span>
-                    <span className="logo-sub">Premium quality clothing</span>
-                  </span>
+                  <img src="/brand/vastram-mark.jpg" alt="" width={36} height={36} className="brand-mark" />
+                  <span className="logo-mark">Vastram</span>
                 </Link>
                 <button aria-label="Close menu" onClick={() => setMenu(false)}>
                   <X />
@@ -112,7 +108,7 @@ export function Header() {
               </div>
               <div className="grid gap-4 px-5">
                 {LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} onClick={() => setMenu(false)} className="serif text-4xl">
+                  <Link key={link.href} href={link.href} onClick={() => setMenu(false)} className="nav-link text-sm">
                     {link.label}
                   </Link>
                 ))}

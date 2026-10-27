@@ -34,12 +34,9 @@ export function ProductCard({ product }: { product: Product }) {
           image={product.image}
         />
       </div>
-      <div className="mt-3 flex items-baseline justify-between gap-3">
-        <div>
-          <p className="eyebrow">{product.fabric.type}</p>
-          <h3 className="serif text-2xl">{product.name}</h3>
-        </div>
-        <p>{inr(product.price)}</p>
+      <div className="mt-3">
+        <h3 className="product-meta">{product.name}</h3>
+        <p className="product-meta">{inr(product.price)}</p>
       </div>
     </Link>
   );

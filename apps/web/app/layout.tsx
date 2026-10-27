@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Fraunces, Outfit } from "next/font/google";
+import { Libre_Bodoni, Outfit } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
-const serif = Fraunces({
+const serif = Libre_Bodoni({
   subsets: ["latin"],
   variable: "--font-serif",
-  axes: ["SOFT", "WONK", "opsz"],
+  weight: ["400", "500"],
 });
 
 const sans = Outfit({

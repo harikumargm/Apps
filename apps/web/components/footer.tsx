@@ -2,31 +2,36 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-[var(--line)]">
-      <div className="page grid gap-10 py-12 md:grid-cols-4">
+    <footer className="mt-16 border-t border-[var(--line)]">
+      <div className="page grid gap-10 py-14 md:grid-cols-4">
         <div>
-          <img src="/brand/vastram-lockup.jpg" alt="Vastram — your premium quality clothing" className="brand-plate" />
+          <p className="logo-mark text-[40px]">Vastram</p>
           <p className="mt-3 max-w-xs text-sm text-[var(--muted)]">
-            Readymade clothing. Cloth is declared by the mill, then checked. Trial photos leave the inference server when the preview returns.
+            Premium quality clothing. Complimentary shipping above ₹2,500. Prices include GST.
           </p>
+          <Link href="/account" className="nav-link mt-6 inline-block">
+            Sign up
+          </Link>
         </div>
-        <div className="grid gap-2 text-sm">
+        <div className="grid content-start gap-2 text-sm">
           <span className="eyebrow">Shop</span>
           <Link href="/catalog?audience=men">Men</Link>
           <Link href="/catalog?audience=women">Women</Link>
           <Link href="/catalog/activewear">Activewear</Link>
           <Link href="/catalog/sportwear">Sportwear</Link>
+          <Link href="/catalog">All clothing</Link>
         </div>
-        <div className="grid gap-2 text-sm">
-          <span className="eyebrow">Studio</span>
+        <div className="grid content-start gap-2 text-sm">
+          <span className="eyebrow">Help</span>
           <Link href="/trial">Trial-View</Link>
-          <Link href="/vendor">Fabric scan</Link>
-          <Link href="/account">Account</Link>
+          <Link href="/account">My account</Link>
           <Link href="/privacy">Privacy</Link>
+          <Link href="/vendor">Fabric scan</Link>
         </div>
         <div className="text-sm text-[var(--muted)]">
-          <p>Complimentary shipping above ₹2,500.</p>
-          <p className="mt-2">Prices include GST.</p>
+          <span className="eyebrow">Visit</span>
+          <p className="mt-2">Sai Cotton Vastram Store</p>
+          <p className="mt-2">Orders above ₹2,500 travel free.</p>
         </div>
       </div>
     </footer>
