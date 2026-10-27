@@ -5,10 +5,12 @@ export function Footer() {
     <footer className="mt-16 border-t border-[var(--line)]">
       <div className="page grid gap-10 py-14 md:grid-cols-4">
         <div>
-          <p className="logo-mark text-[40px]">Vastram</p>
-          <p className="mt-3 max-w-xs text-sm text-[var(--muted)]">
-            Premium quality clothing. Complimentary shipping above ₹2,500. Prices include GST.
-          </p>
+          <Link href="/" className="brand-lockup" aria-label="Vastram home">
+            <img src="/brand/vastram-mark.jpg" alt="" width={48} height={48} className="brand-mark footer-mark" />
+            <span className="logo-mark text-[40px]">Vastram</span>
+          </Link>
+          <p className="mt-3 max-w-xs text-sm text-[var(--muted)]">Complimentary shipping above ₹2,500.</p>
+          <p className="mt-1 max-w-xs text-sm text-[var(--muted)]">Premium quality clothing. Prices include GST.</p>
           <Link href="/account" className="nav-link mt-6 inline-block">
             Sign up
           </Link>
