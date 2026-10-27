@@ -9,8 +9,8 @@ export function Footer() {
             <img src="/brand/vastram-mark.jpg" alt="" width={48} height={48} className="brand-mark footer-mark" />
             <span className="logo-mark text-[40px]">Vastram</span>
           </Link>
+          <p className="mt-1 max-w-xs text-sm text-[var(--muted)]">Premium quality clothing</p>
           <p className="mt-3 max-w-xs text-sm text-[var(--muted)]">Complimentary shipping above ₹2,500.</p>
-          <p className="mt-1 max-w-xs text-sm text-[var(--muted)]">Premium quality clothing. Prices include GST.</p>
           <Link href="/account" className="nav-link mt-6 inline-block">
             Sign up
           </Link>
