@@ -5,9 +5,7 @@ import { products } from "@/lib/catalog";
 
 const DEPARTMENTS = [
   { href: "/catalog?audience=men", label: "Men", line: "Shirts, kurtas, trousers" },
-  { href: "/catalog?audience=men&silhouette=tshirt", label: "T-Shirts", line: "Peacock mark, men's cut" },
   { href: "/catalog?audience=women", label: "Women", line: "Sarees, sets, dresses" },
-  { href: "/catalog?occasion=festive", label: "Festive", line: "Silk for the evening" },
   { href: "/catalog?occasion=casual", label: "Casual", line: "Cloth for the week" },
 ];
 

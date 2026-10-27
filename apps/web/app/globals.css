@@ -275,10 +275,6 @@ img, svg { display: block; max-width: 100%; }
   .dept-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-@media (min-width: 1100px) {
-  .dept-grid { grid-template-columns: repeat(5, 1fr); }
-}
-
 .dept-card {
   display: flex;
   flex-direction: column;

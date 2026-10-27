@@ -13,11 +13,9 @@ export function Footer() {
         <div className="grid gap-2 text-sm">
           <span className="eyebrow">Shop</span>
           <Link href="/catalog?audience=men">Men</Link>
-          <Link href="/catalog?audience=men&silhouette=tshirt">T-Shirts</Link>
           <Link href="/catalog?audience=women">Women</Link>
           <Link href="/catalog/activewear">Activewear</Link>
           <Link href="/catalog/sportwear">Sportwear</Link>
-          <Link href="/catalog?occasion=festive">Festive</Link>
         </div>
         <div className="grid gap-2 text-sm">
           <span className="eyebrow">Studio</span>
