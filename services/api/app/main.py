@@ -1,4 +1,4 @@
-"""Sutra API gateway.
+"""Sai Cotton Vastram Store API gateway.
 
 Commerce, profiles, and the two vision features share one FastAPI process
 in local development. Set VISION_URL to split fabric analysis and trial
@@ -353,7 +353,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     settings = settings or Settings.load()
     hub = Hub(settings)
     app = FastAPI(
-        title="Sutra",
+        title="Sai Cotton Vastram Store",
         version="1.0.0",
         summary="Readymade clothing commerce, fabric reading, and trial view.",
     )
@@ -445,7 +445,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 INSERT INTO users (id, email, phone, name, password_hash, oauth_provider, measurements, consent_training, created_at)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """,
-                (user_id, None, phone, "Sutra customer", None, None, "{}", 0, now_iso()),
+                (user_id, None, phone, "Customer", None, None, "{}", 0, now_iso()),
             )
             user = hub.user_by_id(user_id)
         sid = request.headers.get("x-session-id")

@@ -16,7 +16,7 @@ class SutraApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Sutra",
+      title: "Sai Cotton Vastram Store",
       theme: sutraTheme(),
       home: const StudioShell(),
     );
@@ -37,7 +37,9 @@ class _StudioShellState extends State<StudioShell> {
   Widget build(BuildContext context) {
     const pages = [HomeView(), CatalogView(), BagView(), AccountView()];
     return Scaffold(
-      appBar: AppBar(title: const Text("Sutra")),
+      appBar: AppBar(
+        title: const Text("Sai Cotton Vastram Store", style: TextStyle(fontSize: 18)),
+      ),
       body: pages[index],
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,

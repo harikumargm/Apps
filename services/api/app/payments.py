@@ -40,7 +40,7 @@ def create_intent(method: str, amount_inr: int, order_id: str) -> PaymentIntent:
     if method == "upi":
         reference = "upi_" + secrets.token_hex(6)
         uri = (
-            f"upi://pay?pa=sutra@okbank&pn=Sutra&am={amount_inr}"
+            f"upi://pay?pa=saicotton@okbank&pn=Sai%20Cotton%20Vastram%20Store&am={amount_inr}"
             f"&cu=INR&tn={order_id}&tr={reference}"
         )
         return PaymentIntent("upi", reference, {"upi_uri": uri, "reference": reference, "mode": "demo"})

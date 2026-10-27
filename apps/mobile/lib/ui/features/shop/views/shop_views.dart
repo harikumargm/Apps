@@ -169,7 +169,7 @@ class _ProductViewState extends ConsumerState<ProductView> {
     final product = widget.product;
     final swatch = product.colors.firstWhere((entry) => entry.name == color);
     return Scaffold(
-      appBar: AppBar(title: const Text("Sutra")),
+      appBar: AppBar(title: const Text("Sai Cotton Vastram Store", style: TextStyle(fontSize: 18))),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [

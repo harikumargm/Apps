@@ -1,4 +1,4 @@
-# Sutra
+# Sai Cotton Vastram Store
 
 Readymade clothing for web and mobile. The shop is an editorial catalog. Two vision services sit behind it: a fabric reading, and a physics-based trial view.
 

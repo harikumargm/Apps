@@ -1,4 +1,4 @@
-"""Sutra vision adapters.
+"""Sai Cotton Vastram Store vision adapters.
 
 Default engines run on CPU. GPU classifiers and diffusion try-on mount
 through SUTRA_FABRIC_ENGINE and SUTRA_TRYON_ENGINE and fail closed until

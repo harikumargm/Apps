@@ -23,7 +23,7 @@ from sutra_vision.privacy import InferenceScratch
 from sutra_vision.tryon import EngineNotMounted as TryOnMissing
 from sutra_vision.tryon import render_tryon
 
-app = FastAPI(title="Sutra Vision", version="1.0.0")
+app = FastAPI(title="Sai Cotton Vastram Store Vision", version="1.0.0")
 scratch = InferenceScratch()
 
 

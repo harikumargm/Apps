@@ -45,8 +45,9 @@ export function Header() {
         <button className="md:hidden" aria-label="Open menu" onClick={() => setMenu(true)}>
           <Menu size={20} />
         </button>
-        <Link href="/" className="serif text-[28px] tracking-tight">
-          Sutra
+        <Link href="/" className="serif text-[18px] leading-[1.05] tracking-tight md:text-[20px]">
+          Sai Cotton
+          <span className="block">Vastram Store</span>
         </Link>
         <nav className="hidden items-center gap-5 md:flex">
           {LINKS.map((link) => (
@@ -94,7 +95,7 @@ export function Header() {
               onClick={(event) => event.stopPropagation()}
             >
               <div className="flex items-center justify-between p-5">
-                <span className="serif text-3xl">Sutra</span>
+                <span className="serif text-2xl leading-tight">Sai Cotton Vastram Store</span>
                 <button aria-label="Close menu" onClick={() => setMenu(false)}>
                   <X />
                 </button>

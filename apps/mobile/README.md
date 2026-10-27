@@ -1,6 +1,6 @@
-# Sutra mobile
+# Sai Cotton Vastram Store
 
-Flutter client for the Sutra shop. Riverpod holds shop and bag state. GetIt provides the API client and repository.
+Flutter client for the shop. Riverpod holds shop and bag state. GetIt provides the API client and repository.
 
 ```bash
 flutter pub get

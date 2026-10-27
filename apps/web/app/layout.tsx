@@ -17,7 +17,7 @@ const sans = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Sutra", template: "%s — Sutra" },
+  title: { default: "Sai Cotton Vastram Store", template: "%s — Sai Cotton Vastram Store" },
   description: "Readymade clothing with a fabric reading on every piece, and a trial view before you buy.",
 };
 
