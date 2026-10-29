@@ -1,0 +1,1190 @@
+{
+  "brand": "Sai Cotton Vastram Store",
+  "currency": "INR",
+  "shipping_free_above": 2500,
+  "shipping_fee": 149,
+  "products": [
+    {
+      "id": "p_indigo_shirt",
+      "slug": "indigo-poplin-shirt",
+      "name": "Indigo Poplin Shirt",
+      "edition": "Monsoon 2026",
+      "departments": [
+        "men",
+        "casual"
+      ],
+      "audience": "men",
+      "occasion": "casual",
+      "price": 3490,
+      "silhouette": "shirt",
+      "summary": "A dry poplin with a collar that keeps its line through a humid day.",
+      "story": "Cut with a slightly longer back hem and mother-of-pearl buttons. The mill spec is a single-fibre cotton poplin, plain weave, light enough to tuck without bulk.",
+      "colors": [
+        {
+          "name": "Indigo",
+          "hex": "#1d3557"
+        },
+        {
+          "name": "Ivory",
+          "hex": "#f4efe4"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Cotton",
+        "composition": [
+          {
+            "fiber": "Cotton",
+            "percent": 100
+          }
+        ],
+        "weave": "plain",
+        "weight": "lightweight",
+        "gsm": 108,
+        "stretch_index": 6,
+        "care": [
+          "Machine wash cold",
+          "Hang dry in shade",
+          "Warm iron on the reverse"
+        ],
+        "ai_verified": true,
+        "confidence": 0.93,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Weave and weight were checked on a studio swatch."
+      },
+      "inventory": {
+        "S": 5,
+        "M": 8,
+        "L": 7,
+        "XL": 3
+      },
+      "mrp": 5450,
+      "rating": 3.8,
+      "reviews": 96
+    },
+    {
+      "id": "p_linen_kurta",
+      "slug": "monsoon-linen-kurta",
+      "name": "Monsoon Linen Kurta",
+      "edition": "Monsoon 2026",
+      "departments": [
+        "men",
+        "festive"
+      ],
+      "audience": "men",
+      "occasion": "festive",
+      "price": 5290,
+      "silhouette": "kurta",
+      "summary": "Stonewashed linen with a straight placket and side slits that move.",
+      "story": "Woven to show the slub. It is meant to crease \u2014 the crease is the cloth, not a fault.",
+      "colors": [
+        {
+          "name": "Sand",
+          "hex": "#cbb892"
+        },
+        {
+          "name": "Indigo",
+          "hex": "#24344a"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Linen",
+        "composition": [
+          {
+            "fiber": "Linen",
+            "percent": 100
+          }
+        ],
+        "weave": "plain",
+        "weight": "medium",
+        "gsm": 165,
+        "stretch_index": 4,
+        "care": [
+          "Gentle machine wash",
+          "Expect a soft crease",
+          "Iron while damp"
+        ],
+        "ai_verified": true,
+        "confidence": 0.9,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Weave and weight were checked on a studio swatch."
+      },
+      "inventory": {
+        "S": 4,
+        "M": 6,
+        "L": 5,
+        "XL": 2
+      },
+      "mrp": 8970,
+      "rating": 3.9,
+      "reviews": 149
+    },
+    {
+      "id": "p_bandhgala",
+      "slug": "ivory-silk-bandhgala",
+      "name": "Ivory Silk Bandhgala",
+      "edition": "Festive",
+      "departments": [
+        "men",
+        "festive"
+      ],
+      "audience": "men",
+      "occasion": "festive",
+      "price": 12900,
+      "silhouette": "bandhgala",
+      "summary": "A closed-collar jacket in a mid-weight silk with a quiet sheen.",
+      "story": "Canvas-free construction so the silk can hang. Wear it over the poplin shirt, not a heavy knit.",
+      "colors": [
+        {
+          "name": "Ivory",
+          "hex": "#efe6d4"
+        },
+        {
+          "name": "Black",
+          "hex": "#161513"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Silk",
+        "composition": [
+          {
+            "fiber": "Silk",
+            "percent": 100
+          }
+        ],
+        "weave": "satin",
+        "weight": "medium",
+        "gsm": 150,
+        "stretch_index": 3,
+        "care": [
+          "Dry clean",
+          "Cool iron on the reverse",
+          "Store on a broad hanger"
+        ],
+        "ai_verified": true,
+        "confidence": 0.91,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Weave and weight were checked on a studio swatch."
+      },
+      "inventory": {
+        "S": 2,
+        "M": 3,
+        "L": 3,
+        "XL": 1
+      },
+      "mrp": 23890,
+      "rating": 4.0,
+      "reviews": 202
+    },
+    {
+      "id": "p_twill_trousers",
+      "slug": "sand-twill-trousers",
+      "name": "Sand Twill Trousers",
+      "edition": "Monsoon 2026",
+      "departments": [
+        "men",
+        "casual"
+      ],
+      "audience": "men",
+      "occasion": "casual",
+      "price": 4290,
+      "silhouette": "trousers",
+      "summary": "A cotton twill with a tapered leg and a waist that sits cleanly.",
+      "story": "The diagonal weave hides a day's creasing better than a plain cloth. Pockets are set so a phone does not pull the hip.",
+      "colors": [
+        {
+          "name": "Sand",
+          "hex": "#c4b08a"
+        },
+        {
+          "name": "Olive",
+          "hex": "#3e4a34"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Cotton",
+        "composition": [
+          {
+            "fiber": "Cotton",
+            "percent": 100
+          }
+        ],
+        "weave": "twill",
+        "weight": "medium",
+        "gsm": 210,
+        "stretch_index": 8,
+        "care": [
+          "Machine wash cold",
+          "Tumble low or hang",
+          "Warm iron"
+        ],
+        "ai_verified": true,
+        "confidence": 0.9,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Weave and weight were checked on a studio swatch."
+      },
+      "inventory": {
+        "S": 4,
+        "M": 7,
+        "L": 6,
+        "XL": 3
+      },
+      "mrp": 8760,
+      "rating": 4.1,
+      "reviews": 255
+    },
+    {
+      "id": "p_city_shirt",
+      "slug": "city-blend-shirt",
+      "name": "City Blend Shirt",
+      "edition": "Work",
+      "departments": [
+        "men",
+        "casual"
+      ],
+      "audience": "men",
+      "occasion": "work",
+      "price": 2990,
+      "silhouette": "shirt",
+      "summary": "A travel shirt in a cotton-rich blend that recovers its shape overnight.",
+      "story": "The synthetic share is there for recovery, not shine. It still reads as cotton across a table.",
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#f7f4ee"
+        },
+        {
+          "name": "Indigo",
+          "hex": "#2a3d5c"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Cotton",
+            "percent": 72
+          },
+          {
+            "fiber": "Polyester",
+            "percent": 28
+          }
+        ],
+        "weave": "plain",
+        "weight": "lightweight",
+        "gsm": 115,
+        "stretch_index": 18,
+        "care": [
+          "Machine wash cold",
+          "Low tumble",
+          "Skip a hot iron"
+        ],
+        "ai_verified": true,
+        "confidence": 0.88,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Weave and weight were checked on a studio swatch."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 8,
+        "L": 5,
+        "XL": 4
+      },
+      "mrp": 6800,
+      "rating": 4.2,
+      "reviews": 308
+    },
+    {
+      "id": "p_saree",
+      "slug": "madder-silk-saree",
+      "name": "Madder Silk Saree",
+      "edition": "Festive",
+      "departments": [
+        "women",
+        "festive"
+      ],
+      "audience": "women",
+      "occasion": "festive",
+      "price": 18900,
+      "silhouette": "saree",
+      "summary": "A fluid silk saree dyed a deep madder, with a narrow zari edge.",
+      "story": "Six metres, finished with a blouse piece in the same cloth. The satin face catches light only when you move.",
+      "colors": [
+        {
+          "name": "Madder",
+          "hex": "#8d3a32"
+        },
+        {
+          "name": "Marigold",
+          "hex": "#d7a441"
+        }
+      ],
+      "sizes": [
+        "Free"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Silk",
+        "composition": [
+          {
+            "fiber": "Silk",
+            "percent": 100
+          }
+        ],
+        "weave": "satin",
+        "weight": "lightweight",
+        "gsm": 90,
+        "stretch_index": 2,
+        "care": [
+          "Dry clean only",
+          "Store folded in muslin",
+          "Keep away from perfume on the pallu"
+        ],
+        "ai_verified": true,
+        "confidence": 0.94,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Weave and weight were checked on a studio swatch."
+      },
+      "inventory": {
+        "Free": 5
+      },
+      "mrp": 29530,
+      "rating": 4.3,
+      "reviews": 361
+    },
+    {
+      "id": "p_coord",
+      "slug": "olive-linen-coord",
+      "name": "Olive Linen Co-ord",
+      "edition": "Monsoon 2026",
+      "departments": [
+        "women",
+        "casual"
+      ],
+      "audience": "women",
+      "occasion": "casual",
+      "price": 7490,
+      "silhouette": "coord",
+      "summary": "A boxy shirt and a wide trouser cut from one piece of olive linen.",
+      "story": "The set is sold together. The shirt is long enough to wear out; the trouser has a flat front and deep pockets.",
+      "colors": [
+        {
+          "name": "Olive",
+          "hex": "#3f4b34"
+        },
+        {
+          "name": "Sand",
+          "hex": "#d8c7a4"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Linen",
+        "composition": [
+          {
+            "fiber": "Linen",
+            "percent": 80
+          },
+          {
+            "fiber": "Cotton",
+            "percent": 20
+          }
+        ],
+        "weave": "plain",
+        "weight": "medium",
+        "gsm": 175,
+        "stretch_index": 5,
+        "care": [
+          "Gentle machine wash",
+          "Hang dry",
+          "Iron while slightly damp"
+        ],
+        "ai_verified": true,
+        "confidence": 0.89,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. The cotton share softens the linen hand."
+      },
+      "inventory": {
+        "XS": 2,
+        "S": 4,
+        "M": 5,
+        "L": 4,
+        "XL": 2
+      },
+      "mrp": 12690,
+      "rating": 4.4,
+      "reviews": 414
+    },
+    {
+      "id": "p_dress",
+      "slug": "black-satin-slip",
+      "name": "Black Satin Slip",
+      "edition": "Festive",
+      "departments": [
+        "women",
+        "festive"
+      ],
+      "audience": "women",
+      "occasion": "festive",
+      "price": 9800,
+      "silhouette": "dress",
+      "summary": "A bias-cut slip in silk satin. The hem is weighted so it falls straight.",
+      "story": "Shoulder seams sit just off the point of the shoulder. There is no lining to fight the drape \u2014 wear it in weather that allows that.",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#141311"
+        },
+        {
+          "name": "Madder",
+          "hex": "#7c332c"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Silk",
+        "composition": [
+          {
+            "fiber": "Silk",
+            "percent": 100
+          }
+        ],
+        "weave": "satin",
+        "weight": "lightweight",
+        "gsm": 95,
+        "stretch_index": 7,
+        "care": [
+          "Dry clean",
+          "Do not wring",
+          "Steam rather than press the face"
+        ],
+        "ai_verified": true,
+        "confidence": 0.92,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Weave and weight were checked on a studio swatch."
+      },
+      "inventory": {
+        "XS": 2,
+        "S": 3,
+        "M": 4,
+        "L": 2
+      },
+      "mrp": 18150,
+      "rating": 4.5,
+      "reviews": 467
+    },
+    {
+      "id": "p_shirtdress",
+      "slug": "ivory-cotton-shirtdress",
+      "name": "Ivory Cotton Shirtdress",
+      "edition": "Monsoon 2026",
+      "departments": [
+        "women",
+        "casual"
+      ],
+      "audience": "women",
+      "occasion": "casual",
+      "price": 4590,
+      "silhouette": "shirtdress",
+      "summary": "A shirt you can walk in \u2014 cotton poplin, hidden placket, calf hem.",
+      "story": "Side pockets, a self belt, and a collar that does not collapse after a wash. Everyday cloth, cut with ceremony.",
+      "colors": [
+        {
+          "name": "Ivory",
+          "hex": "#f3ecdf"
+        },
+        {
+          "name": "Indigo",
+          "hex": "#1e334f"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Cotton",
+        "composition": [
+          {
+            "fiber": "Cotton",
+            "percent": 100
+          }
+        ],
+        "weave": "plain",
+        "weight": "lightweight",
+        "gsm": 112,
+        "stretch_index": 5,
+        "care": [
+          "Machine wash cold",
+          "Hang dry",
+          "Warm iron"
+        ],
+        "ai_verified": true,
+        "confidence": 0.93,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Weave and weight were checked on a studio swatch."
+      },
+      "inventory": {
+        "XS": 2,
+        "S": 5,
+        "M": 6,
+        "L": 4,
+        "XL": 2
+      },
+      "mrp": 9370,
+      "rating": 3.8,
+      "reviews": 520
+    },
+    {
+      "id": "p_kids_kurta",
+      "slug": "marigold-kids-kurta",
+      "name": "Marigold Kids Kurta Set",
+      "edition": "Festive",
+      "departments": [
+        "kids",
+        "festive"
+      ],
+      "audience": "kids",
+      "occasion": "festive",
+      "price": 2490,
+      "silhouette": "kids-set",
+      "summary": "A small kurta and trouser in marigold cotton, with room to sit on the floor.",
+      "story": "Seams are flatlocked at the shoulder. The dye is garment-washed so the first celebration does not end in a crock of colour.",
+      "colors": [
+        {
+          "name": "Marigold",
+          "hex": "#e0a33a"
+        },
+        {
+          "name": "Ivory",
+          "hex": "#f6f0e4"
+        }
+      ],
+      "sizes": [
+        "2-3Y",
+        "4-5Y",
+        "6-7Y"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Cotton",
+        "composition": [
+          {
+            "fiber": "Cotton",
+            "percent": 100
+          }
+        ],
+        "weave": "plain",
+        "weight": "lightweight",
+        "gsm": 120,
+        "stretch_index": 6,
+        "care": [
+          "Machine wash cold with like colours",
+          "Hang dry",
+          "Warm iron"
+        ],
+        "ai_verified": true,
+        "confidence": 0.9,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Weave and weight were checked on a studio swatch."
+      },
+      "inventory": {
+        "2-3Y": 4,
+        "4-5Y": 5,
+        "6-7Y": 4
+      },
+      "mrp": 5660,
+      "rating": 3.9,
+      "reviews": 573
+    },
+    {
+      "id": "p_kids_shorts",
+      "slug": "sky-linen-playset",
+      "name": "Sky Linen Playset",
+      "edition": "Monsoon 2026",
+      "departments": [
+        "kids",
+        "casual"
+      ],
+      "audience": "kids",
+      "occasion": "casual",
+      "price": 1990,
+      "silhouette": "shorts",
+      "summary": "A linen-cotton tee and short, cut loose for heat.",
+      "story": "The blend keeps the linen from scratching. Elastic is soft and covered.",
+      "colors": [
+        {
+          "name": "Sky",
+          "hex": "#8fb4c9"
+        },
+        {
+          "name": "Sand",
+          "hex": "#e4d3b0"
+        }
+      ],
+      "sizes": [
+        "2-3Y",
+        "4-5Y",
+        "6-7Y"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Linen",
+        "composition": [
+          {
+            "fiber": "Linen",
+            "percent": 55
+          },
+          {
+            "fiber": "Cotton",
+            "percent": 45
+          }
+        ],
+        "weave": "plain",
+        "weight": "lightweight",
+        "gsm": 130,
+        "stretch_index": 9,
+        "care": [
+          "Gentle machine wash",
+          "Hang dry",
+          "Warm iron if you must"
+        ],
+        "ai_verified": true,
+        "confidence": 0.87,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. Cotton is blended in for a softer hand."
+      },
+      "inventory": {
+        "2-3Y": 5,
+        "4-5Y": 5,
+        "6-7Y": 3
+      },
+      "mrp": 3110,
+      "rating": 4.0,
+      "reviews": 626
+    },
+    {
+      "id": "p_palazzo",
+      "slug": "night-garden-palazzo",
+      "name": "Night Garden Palazzo",
+      "edition": "Work",
+      "departments": [
+        "women",
+        "casual"
+      ],
+      "audience": "women",
+      "occasion": "work",
+      "price": 3190,
+      "silhouette": "palazzo",
+      "summary": "A wide palazzo in a matte synthetic blend that does not cling when the day warms.",
+      "story": "Pressed pleats at the waist, then weight does the rest. The cloth has a little elasticity so the waistband does not need a harsh elastic.",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1a1917"
+        },
+        {
+          "name": "Olive",
+          "hex": "#4a5340"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Viscose",
+            "percent": 70
+          },
+          {
+            "fiber": "Polyester",
+            "percent": 30
+          }
+        ],
+        "weave": "twill",
+        "weight": "lightweight",
+        "gsm": 140,
+        "stretch_index": 22,
+        "care": [
+          "Machine wash cold",
+          "Hang immediately",
+          "Low iron on the reverse"
+        ],
+        "ai_verified": true,
+        "confidence": 0.86,
+        "engine": "mill-spec+heuristic-cv-v1",
+        "mill_note": "Composition is the mill specification. The polyester share adds recovery."
+      },
+      "inventory": {
+        "XS": 3,
+        "S": 5,
+        "M": 6,
+        "L": 4,
+        "XL": 3
+      },
+      "mrp": 5410,
+      "rating": 4.1,
+      "reviews": 679
+    },
+    {
+      "id": "p_olive_tee",
+      "slug": "olive-peacock-tee",
+      "name": "Olive Peacock Tee",
+      "edition": "T-Shirts",
+      "departments": [
+        "men",
+        "tshirts",
+        "casual",
+        "sportwear"
+      ],
+      "audience": "men",
+      "occasion": "casual",
+      "price": 1990,
+      "silhouette": "tshirt",
+      "image": "/catalog/olive-peacock-tee.jpg",
+      "summary": "An olive jersey with the peacock and VASTRA across the chest.",
+      "story": "A short-sleeve crew with a full-front gold print. The cloth is a light performance knit.",
+      "colors": [
+        {
+          "name": "Olive",
+          "hex": "#8a9a3a"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 92
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 8
+          }
+        ],
+        "weave": "knit",
+        "weight": "lightweight",
+        "gsm": 155,
+        "stretch_index": 28,
+        "care": [
+          "Machine wash cold",
+          "Do not tumble high",
+          "Iron the print on the reverse"
+        ],
+        "ai_verified": false,
+        "confidence": 0.72,
+        "engine": "catalogue-photo",
+        "mill_note": "Jersey blend stated for this cut. The photograph is the product record; weave and weight were not scanned from a loose swatch."
+      },
+      "inventory": {
+        "S": 8,
+        "M": 12,
+        "L": 10,
+        "XL": 6
+      },
+      "mrp": 3690,
+      "rating": 4.2,
+      "reviews": 732
+    },
+    {
+      "id": "p_teal_tee",
+      "slug": "teal-crest-tee",
+      "name": "Teal Crest Tee",
+      "edition": "T-Shirts",
+      "departments": [
+        "men",
+        "tshirts",
+        "casual",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "casual",
+      "price": 1790,
+      "silhouette": "tshirt",
+      "image": "/catalog/teal-crest-tee.jpg",
+      "summary": "A deep teal crew with a small peacock crest and VASTRA on the chest.",
+      "story": "The mark sits high on the left chest. The body is a plain knit with a set-in sleeve.",
+      "colors": [
+        {
+          "name": "Teal",
+          "hex": "#1f4f4a"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 92
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 8
+          }
+        ],
+        "weave": "knit",
+        "weight": "lightweight",
+        "gsm": 155,
+        "stretch_index": 28,
+        "care": [
+          "Machine wash cold",
+          "Do not tumble high",
+          "Iron the print on the reverse"
+        ],
+        "ai_verified": false,
+        "confidence": 0.72,
+        "engine": "catalogue-photo",
+        "mill_note": "Jersey blend stated for this cut. The photograph is the product record; weave and weight were not scanned from a loose swatch."
+      },
+      "inventory": {
+        "S": 8,
+        "M": 12,
+        "L": 10,
+        "XL": 6
+      },
+      "mrp": 3650,
+      "rating": 4.3,
+      "reviews": 785
+    },
+    {
+      "id": "p_royal_tee",
+      "slug": "royal-peacock-tee",
+      "name": "Royal Peacock Tee",
+      "edition": "T-Shirts",
+      "departments": [
+        "men",
+        "tshirts",
+        "casual",
+        "sportwear"
+      ],
+      "audience": "men",
+      "occasion": "casual",
+      "price": 2190,
+      "silhouette": "tshirt",
+      "image": "/catalog/royal-peacock-tee.jpg",
+      "summary": "A royal jersey with a large gold peacock and VASTRA below it.",
+      "story": "The print covers the chest and stops above the hem. Wear it untucked.",
+      "colors": [
+        {
+          "name": "Royal",
+          "hex": "#1a2fbf"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 92
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 8
+          }
+        ],
+        "weave": "knit",
+        "weight": "lightweight",
+        "gsm": 155,
+        "stretch_index": 28,
+        "care": [
+          "Machine wash cold",
+          "Do not tumble high",
+          "Iron the print on the reverse"
+        ],
+        "ai_verified": false,
+        "confidence": 0.72,
+        "engine": "catalogue-photo",
+        "mill_note": "Jersey blend stated for this cut. The photograph is the product record; weave and weight were not scanned from a loose swatch."
+      },
+      "inventory": {
+        "S": 8,
+        "M": 12,
+        "L": 10,
+        "XL": 6
+      },
+      "mrp": 4980,
+      "rating": 4.4,
+      "reviews": 838
+    },
+    {
+      "id": "p_mustard_zip",
+      "slug": "mustard-quarter-zip",
+      "name": "Mustard Quarter-Zip",
+      "edition": "T-Shirts",
+      "departments": [
+        "men",
+        "tshirts",
+        "casual",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "casual",
+      "price": 2490,
+      "silhouette": "tshirt",
+      "image": "/catalog/mustard-quarter-zip.jpg",
+      "summary": "A mustard long-sleeve quarter-zip with the crest on the chest.",
+      "story": "A short placket with a dark zipper, raglan-style seams, and a small peacock above VASTRA.",
+      "colors": [
+        {
+          "name": "Mustard",
+          "hex": "#e2b01e"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 92
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 8
+          }
+        ],
+        "weave": "knit",
+        "weight": "lightweight",
+        "gsm": 155,
+        "stretch_index": 28,
+        "care": [
+          "Machine wash cold",
+          "Do not tumble high",
+          "Iron the print on the reverse"
+        ],
+        "ai_verified": false,
+        "confidence": 0.72,
+        "engine": "catalogue-photo",
+        "mill_note": "Jersey blend stated for this cut. The photograph is the product record; weave and weight were not scanned from a loose swatch."
+      },
+      "inventory": {
+        "S": 8,
+        "M": 12,
+        "L": 10,
+        "XL": 6
+      },
+      "mrp": 3890,
+      "rating": 4.5,
+      "reviews": 891
+    },
+    {
+      "id": "p_white_sport",
+      "slug": "white-sport-tee",
+      "name": "White Sport Tee",
+      "edition": "T-Shirts",
+      "departments": [
+        "men",
+        "tshirts",
+        "casual",
+        "sportwear"
+      ],
+      "audience": "men",
+      "occasion": "casual",
+      "price": 1890,
+      "silhouette": "tshirt",
+      "image": "/catalog/white-sport-tee.jpg",
+      "summary": "A white crew with black and red side panels and a gold crest.",
+      "story": "The side panels curve from the shoulder to the hem. The collar is bound in black.",
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#f4f4f2"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 92
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 8
+          }
+        ],
+        "weave": "knit",
+        "weight": "lightweight",
+        "gsm": 155,
+        "stretch_index": 28,
+        "care": [
+          "Machine wash cold",
+          "Do not tumble high",
+          "Iron the print on the reverse"
+        ],
+        "ai_verified": false,
+        "confidence": 0.72,
+        "engine": "catalogue-photo",
+        "mill_note": "Jersey blend stated for this cut. The photograph is the product record; weave and weight were not scanned from a loose swatch."
+      },
+      "inventory": {
+        "S": 8,
+        "M": 12,
+        "L": 10,
+        "XL": 6
+      },
+      "mrp": 3200,
+      "rating": 3.8,
+      "reviews": 944
+    },
+    {
+      "id": "p_black_tee",
+      "slug": "black-crest-tee",
+      "name": "Black Crest Tee",
+      "edition": "T-Shirts",
+      "departments": [
+        "men",
+        "tshirts",
+        "casual",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "casual",
+      "price": 1790,
+      "silhouette": "tshirt",
+      "image": "/catalog/black-crest-tee.jpg",
+      "summary": "A black crew with the peacock crest and VASTRA in gold.",
+      "story": "The same chest mark as the teal, on a dark knit that keeps the gold readable.",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#161513"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 92
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 8
+          }
+        ],
+        "weave": "knit",
+        "weight": "lightweight",
+        "gsm": 155,
+        "stretch_index": 28,
+        "care": [
+          "Machine wash cold",
+          "Do not tumble high",
+          "Iron the print on the reverse"
+        ],
+        "ai_verified": false,
+        "confidence": 0.72,
+        "engine": "catalogue-photo",
+        "mill_note": "Jersey blend stated for this cut. The photograph is the product record; weave and weight were not scanned from a loose swatch."
+      },
+      "inventory": {
+        "S": 8,
+        "M": 12,
+        "L": 10,
+        "XL": 6
+      },
+      "mrp": 3310,
+      "rating": 3.9,
+      "reviews": 997
+    }
+  ]
+}
