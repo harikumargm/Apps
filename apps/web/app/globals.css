@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --font-serif: "Libre Bodoni", Georgia, serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
   --paper: #ffffff;
   --paper-2: #f5f5f5;
   --ink: #111111;

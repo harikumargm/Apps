@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { products } from "@/lib/catalog";
 import type { Product } from "@/lib/types";
 import { ProductCard } from "./product-card";
@@ -16,7 +16,7 @@ const COLLECTIONS = {
 
 export function CatalogBrowser({ collection }: { collection?: keyof typeof COLLECTIONS }) {
   const params = useSearchParams();
-  const router = useRouter();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const audience = params.get("audience") || "";
@@ -37,7 +37,7 @@ export function CatalogBrowser({ collection }: { collection?: keyof typeof COLLE
       else query.set(key, value);
     }
     const path = collection ? `/catalog/${collection}` : "/catalog";
-    router.replace(`${path}?${query.toString()}`, { scroll: false });
+    navigate({ pathname: path, search: query.toString() }, { replace: true });
   }
 
   const shop = useMemo(() => products.filter((product) => product.audience !== "kids"), []);

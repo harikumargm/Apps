@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { ProductCard } from "@/components/product-card";
 import { products } from "@/lib/catalog";
 
@@ -16,7 +16,7 @@ export default function HomePage() {
         <img className="campaign-photo" src={hero.image} alt={hero.name} />
         <div className="campaign-copy">
           <h1 className="serif">Cloth for the week.</h1>
-          <Link href="/catalog" className="btn btn-light mt-8">
+          <Link to="/catalog" className="btn btn-light mt-8">
             Shop now
           </Link>
         </div>
@@ -30,13 +30,13 @@ export default function HomePage() {
 
       <section className="duo">
         {active && (
-          <Link href="/catalog/activewear" className="tile">
+          <Link to="/catalog/activewear" className="tile">
             <img src={active.image} alt={active.name} />
             <span className="btn btn-light">Shop activewear</span>
           </Link>
         )}
         {sport && (
-          <Link href="/catalog/sportwear" className="tile">
+          <Link to="/catalog/sportwear" className="tile">
             <img src={sport.image} alt={sport.name} />
             <span className="btn btn-light">Shop sportwear</span>
           </Link>
@@ -48,7 +48,7 @@ export default function HomePage() {
           <img src={banner.image} alt={banner.name} />
           <div className="banner-copy">
             <h2 className="serif">New cloth, same care.</h2>
-            <Link href={`/product/${banner.slug}`} className="btn btn-light mt-8">
+            <Link to={`/product/${banner.slug}`} className="btn btn-light mt-8">
               Shop now
             </Link>
           </div>
@@ -58,7 +58,7 @@ export default function HomePage() {
       <section className="page py-14">
         <div className="mb-8 flex items-end justify-between">
           <h2 className="serif text-5xl">New in</h2>
-          <Link href="/catalog" className="nav-link">
+          <Link to="/catalog" className="nav-link">
             View all
           </Link>
         </div>

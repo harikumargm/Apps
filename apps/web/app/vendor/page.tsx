@@ -1,7 +1,5 @@
 import { VendorScan } from "@/components/vendor-scan";
 
-export const metadata = { title: "Fabric scan" };
-
 export default function VendorPage() {
   return (
     <div className="page py-10">

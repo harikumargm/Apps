@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { ApiError, api } from "@/lib/api";
 import { inr } from "@/lib/format";
 import { useStore } from "@/lib/store";
@@ -157,7 +157,7 @@ export function AccountPanel() {
           {orders.length === 0 && <li className="text-[var(--muted)]">No orders yet.</li>}
           {orders.map((order) => (
             <li key={order.id} className="border border-[var(--line)] p-4">
-              <Link href={`/orders/${order.id}`} className="serif text-2xl">
+              <Link to={`/orders/${order.id}`} className="serif text-2xl">
                 {order.id}
               </Link>
               <p className="text-sm text-[var(--muted)]">
