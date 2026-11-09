@@ -1,5 +1,3 @@
-export const metadata = { title: "Privacy" };
-
 export default function PrivacyPage() {
   return (
     <div className="page max-w-3xl py-10">

@@ -1,7 +1,5 @@
 import { AccountPanel } from "@/components/account-panel";
 
-export const metadata = { title: "Account" };
-
 export default function AccountPage() {
   return (
     <div className="page py-10">

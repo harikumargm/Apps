@@ -1,8 +1,7 @@
 "use client";
 
 import { Menu, Moon, Search, ShoppingBag, Sun, X } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { inr } from "@/lib/format";
@@ -19,7 +18,7 @@ const LINKS = [
 ];
 
 export function Header() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const items = useStore((state) => state.items);
   const hydrated = useStore((state) => state.hydrated);
   const cartOpen = useStore((state) => state.cartOpen);
@@ -41,20 +40,20 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--line)] bg-[var(--paper)]">
-      <Link href="/catalog" className="announce">
+      <Link to="/catalog" className="announce">
         Complimentary shipping above ₹2,500 →
       </Link>
       <div className="page flex h-[64px] items-center gap-6">
         <button className="md:hidden" aria-label="Open menu" onClick={() => setMenu(true)}>
           <Menu size={20} />
         </button>
-        <Link href="/" className="brand-lockup shrink-0" aria-label="Vastram home">
+        <Link to="/" className="brand-lockup shrink-0" aria-label="Vastram home">
           <img src="/brand/vastram-mark.jpg" alt="" width={36} height={36} className="brand-mark" />
           <span className="logo-mark">Vastram</span>
         </Link>
         <nav className="hidden items-center gap-5 md:flex">
           {LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="nav-link">
+            <Link key={link.href} to={link.href} className="nav-link">
               {link.label}
             </Link>
           ))}
@@ -63,7 +62,7 @@ export function Header() {
           className="site-search ml-auto hidden md:flex"
           onSubmit={(event) => {
             event.preventDefault();
-            router.push(query ? `/catalog?q=${encodeURIComponent(query)}` : "/catalog");
+            navigate(query ? `/catalog?q=${encodeURIComponent(query)}` : "/catalog");
           }}
         >
           <input
@@ -98,7 +97,7 @@ export function Header() {
               onClick={(event) => event.stopPropagation()}
             >
               <div className="flex items-center justify-between p-5">
-                <Link href="/" className="brand-lockup" onClick={() => setMenu(false)} aria-label="Vastram home">
+                <Link to="/" className="brand-lockup" onClick={() => setMenu(false)} aria-label="Vastram home">
                   <img src="/brand/vastram-mark.jpg" alt="" width={36} height={36} className="brand-mark" />
                   <span className="logo-mark">Vastram</span>
                 </Link>
@@ -108,11 +107,11 @@ export function Header() {
               </div>
               <div className="grid gap-4 px-5">
                 {LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} onClick={() => setMenu(false)} className="nav-link text-sm">
+                  <Link key={link.href} to={link.href} onClick={() => setMenu(false)} className="nav-link text-sm">
                     {link.label}
                   </Link>
                 ))}
-                <Link href="/account" onClick={() => setMenu(false)}>
+                <Link to="/account" onClick={() => setMenu(false)}>
                   Account
                 </Link>
               </div>
@@ -150,7 +149,7 @@ export function Header() {
                         />
                       </div>
                       <div>
-                        <Link href={`/product/${item.slug}`} onClick={() => setCartOpen(false)} className="serif text-xl">
+                        <Link to={`/product/${item.slug}`} onClick={() => setCartOpen(false)} className="serif text-xl">
                           {item.name}
                         </Link>
                         <p className="text-sm text-[var(--muted)]">
@@ -176,7 +175,7 @@ export function Header() {
                   <span>Subtotal</span>
                   <span>{inr(subtotal)}</span>
                 </div>
-                <Link href="/checkout" onClick={() => setCartOpen(false)} className="btn btn-solid w-full">
+                <Link to="/checkout" onClick={() => setCartOpen(false)} className="btn btn-solid w-full">
                   Checkout
                 </Link>
               </div>

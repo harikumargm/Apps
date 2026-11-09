@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { ApiError, api } from "@/lib/api";
 import { inr } from "@/lib/format";
 import { useStore } from "@/lib/store";
@@ -13,7 +13,7 @@ const METHODS = [
 ];
 
 export function CheckoutForm() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const items = useStore((state) => state.items);
   const user = useStore((state) => state.user);
   const subtotal = items.reduce((sum, item) => sum + item.unit_price * item.qty, 0);
@@ -59,7 +59,7 @@ export function CheckoutForm() {
         })),
       });
       const confirmed = await api.confirm(response.order.id);
-      router.push(`/orders/${confirmed.order.id}`);
+      navigate(`/orders/${confirmed.order.id}`);
     } catch (caught) {
       setError(caught instanceof ApiError ? caught.message : "Checkout did not complete.");
     } finally {

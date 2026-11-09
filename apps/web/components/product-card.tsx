@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { inr } from "@/lib/format";
 import type { Product } from "@/lib/types";
 import { GarmentArt } from "./garment-art";
@@ -40,7 +40,7 @@ export function PriceLine({ price, mrp }: { price: number; mrp?: number }) {
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href={`/product/${product.slug}`} className="deal-card">
+    <Link to={`/product/${product.slug}`} className="deal-card">
       <div className="deal-photo">
         <ProductVisual
           silhouette={product.silhouette}

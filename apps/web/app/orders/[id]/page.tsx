@@ -1,12 +1,11 @@
+import { useParams } from "react-router-dom";
 import { OrderView } from "@/components/order-view";
 
-export const metadata = { title: "Order" };
-
-export default async function OrderPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default function OrderPage() {
+  const { id } = useParams();
   return (
     <div className="page py-10">
-      <OrderView id={id} />
+      <OrderView id={id ?? ""} />
     </div>
   );
 }

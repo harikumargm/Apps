@@ -1,6 +1,4 @@
-"use client";
-
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { inr } from "@/lib/format";
 import { lineKey, useStore } from "@/lib/store";
 import { ProductVisual } from "@/components/product-card";
@@ -16,7 +14,7 @@ export default function CartPage() {
       <h1 className="serif text-6xl">Bag</h1>
       {items.length === 0 ? (
         <p className="mt-6 text-[var(--muted)]">
-          Empty. <Link href="/catalog">Return to the edit.</Link>
+          Empty. <Link to="/catalog">Return to the edit.</Link>
         </p>
       ) : (
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
@@ -33,7 +31,7 @@ export default function CartPage() {
                   />
                 </div>
                 <div>
-                  <Link href={`/product/${item.slug}`} className="serif text-3xl">
+                  <Link to={`/product/${item.slug}`} className="serif text-3xl">
                     {item.name}
                   </Link>
                   <p className="text-sm text-[var(--muted)]">
@@ -66,7 +64,7 @@ export default function CartPage() {
               <span>Total</span>
               <span>{inr(subtotal + shipping)}</span>
             </p>
-            <Link href="/checkout" className="btn btn-solid mt-5 w-full">
+            <Link to="/checkout" className="btn btn-solid mt-5 w-full">
               Checkout
             </Link>
           </aside>
