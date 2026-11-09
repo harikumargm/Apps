@@ -1,5 +1,7 @@
 {
   "name": "sutra-web",
+  "version": "1.0.0",
+  "main": "server.mjs",
   "private": true,
   "type": "module",
   "scripts": {

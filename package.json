@@ -1,0 +1,12 @@
+{
+  "name": "vastram-store",
+  "version": "1.0.0",
+  "main": "apps/web/server.mjs",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix apps/web",
+    "prebuild": "npm install --prefix apps/web",
+    "build": "npm run build --prefix apps/web",
+    "start": "node apps/web/server.mjs"
+  }
+}
