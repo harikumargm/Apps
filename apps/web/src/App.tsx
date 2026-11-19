@@ -7,6 +7,7 @@ import NotFound from "@/app/not-found";
 import CatalogPage from "@/app/catalog/page";
 import ActivewearPage from "@/app/catalog/activewear/page";
 import SportwearPage from "@/app/catalog/sportwear/page";
+import ComboOffersPage from "@/app/catalog/combo-offers/page";
 import ProductPage from "@/app/product/[slug]/page";
 import CartPage from "@/app/cart/page";
 import CheckoutPage from "@/app/checkout/page";
@@ -32,6 +33,7 @@ export function App() {
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/catalog/activewear" element={<ActivewearPage />} />
           <Route path="/catalog/sportwear" element={<SportwearPage />} />
+          <Route path="/catalog/combo-offers" element={<ComboOffersPage />} />
           <Route path="/product/:slug" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />

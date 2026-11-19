@@ -12,6 +12,7 @@ const FABRICS = ["Cotton", "Silk", "Linen", "Synthetic blend"];
 const COLLECTIONS = {
   activewear: "Activewear",
   sportwear: "Sportwear",
+  combo_offers: "Combo Offers",
 } as const;
 
 export function CatalogBrowser({ collection }: { collection?: keyof typeof COLLECTIONS }) {

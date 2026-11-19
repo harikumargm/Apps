@@ -14,6 +14,7 @@ const LINKS = [
   { href: "/catalog?audience=women", label: "Women" },
   { href: "/catalog/activewear", label: "Activewear" },
   { href: "/catalog/sportwear", label: "Sportwear" },
+  { href: "/catalog/combo-offers", label: "Combo Offers" },
   { href: "/trial", label: "Trial-View" },
 ];
 
