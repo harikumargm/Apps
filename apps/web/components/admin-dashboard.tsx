@@ -16,8 +16,10 @@ import {
   Tag,
   TrendingUp,
   UploadCloud,
+  Wand2,
   X,
 } from "lucide-react";
+import { AdminStudioPanel } from "@/components/admin-studio-panel";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { products } from "@/lib/catalog";
 import { inr } from "@/lib/format";
@@ -144,7 +146,7 @@ function paymentLabel(method: string) {
 }
 
 export function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<"inventory" | "upload" | "orders">("inventory");
+  const [activeTab, setActiveTab] = useState<"studio" | "inventory" | "upload" | "orders">("studio");
   const [token, setToken] = useState("");
   const [authed, setAuthed] = useState(false);
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
@@ -235,6 +237,8 @@ export function AdminDashboard() {
   const lowStockCount = inventory.filter((i) => i.stock > 0 && i.stock < 10).length;
   const outOfStockCount = inventory.filter((i) => i.stock === 0).length;
   const todayRevenue = analytics?.revenue_paise ?? orders.reduce((acc, o) => acc + o.total, 0);
+  const defaultStudioSource =
+    products.find((p) => p.image)?.image ?? "/catalog/olive-peacock-tee.jpg";
 
   async function patchStock(sku: string, qty: number) {
     setBusy(sku);
@@ -372,6 +376,25 @@ export function AdminDashboard() {
     return order.items.map((i) => `${i.name} (${i.size}) x ${i.qty}`).join(", ");
   }
 
+  function simulateDemoOrder() {
+    const demo: LiveOrder = {
+      id: `ORD-${Math.floor(1000 + Math.random() * 9000)}`,
+      email: "demo@scv.test",
+      customer_name: "Priya Nair",
+      phone: "+91 99887 76655",
+      total: 139900,
+      status: "paid",
+      payment_method: "razorpay",
+      created_at: new Date().toISOString(),
+      items: [{ name: "Cotton kurta", size: "M", color: "Ivory", qty: 1 }],
+    };
+    setOrders((prev) => [demo, ...prev]);
+    setUnreadAlerts((n) => n + 1);
+    setLiveToast(demo);
+    audio.current?.play().catch(() => undefined);
+    window.setTimeout(() => setLiveToast(null), 6000);
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       {liveToast && (
@@ -476,6 +499,9 @@ export function AdminDashboard() {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3 mb-6">
+          <TabButton active={activeTab === "studio"} onClick={() => setActiveTab("studio")} icon={<Wand2 className="w-4 h-4 text-violet-500" />}>
+            Display studio
+          </TabButton>
           <TabButton active={activeTab === "inventory"} onClick={() => setActiveTab("inventory")} icon={<Package className="w-4 h-4" />}>
             SKU stock management
           </TabButton>
@@ -493,6 +519,8 @@ export function AdminDashboard() {
             Live purchase feed ({orders.length})
           </TabButton>
         </div>
+
+        {activeTab === "studio" && <AdminStudioPanel defaultSource={defaultStudioSource} />}
 
         {activeTab === "inventory" && (
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
@@ -672,7 +700,16 @@ export function AdminDashboard() {
                               </span>
                               <span className="font-bold">{inr(item.suggestedPrice)}</span>
                             </div>
-                            <p className="mt-2 text-sm font-bold">{item.detectedName}</p>
+                            <input
+                              type="text"
+                              value={item.detectedName}
+                              onChange={(e) =>
+                                setUploadedQueue((prev) =>
+                                  prev.map((u) => (u.tempId === item.tempId ? { ...u, detectedName: e.target.value } : u)),
+                                )
+                              }
+                              className="mt-2 w-full text-sm font-bold border border-slate-200 rounded px-2 py-1"
+                            />
                             <p className="text-xs mt-1">
                               {item.gender} · {item.category} · stock {item.initialStock}
                             </p>
@@ -697,9 +734,18 @@ export function AdminDashboard() {
 
         {activeTab === "orders" && (
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="p-4 border-b border-slate-200">
-              <h3 className="font-bold">Real-time purchase stream</h3>
-              <p className="text-xs text-slate-500">Connected when admin token is valid — place checkout to test.</p>
+            <div className="p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 className="font-bold">Real-time purchase stream</h3>
+                <p className="text-xs text-slate-500">SSE when admin token is valid — or trigger a demo alert.</p>
+              </div>
+              <button
+                type="button"
+                onClick={simulateDemoOrder}
+                className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg"
+              >
+                + Trigger test order
+              </button>
             </div>
             <div className="divide-y divide-slate-200">
               {orders.length === 0 && <p className="p-4 text-sm text-slate-500">No orders yet.</p>}
