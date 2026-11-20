@@ -41,6 +41,11 @@ class InventoryImport(BaseModel):
     rows: list[InventoryRow]
 
 
+class InventoryPatch(BaseModel):
+    sku: str
+    qty: int = Field(ge=0)
+
+
 def register_admin_routes(app: FastAPI, hub, settings) -> None:
     @app.get("/v1/admin/analytics")
     def analytics(request: Request) -> dict:
@@ -63,6 +68,28 @@ def register_admin_routes(app: FastAPI, hub, settings) -> None:
         _require_admin(request, settings)
         return {"items": hub.db.query("SELECT sku, qty FROM stock ORDER BY sku", ())}
 
+    @app.patch("/v1/admin/inventory")
+    def inventory_patch(body: InventoryPatch, request: Request) -> dict:
+        _require_admin(request, settings)
+        hub.db.execute(
+            """
+            INSERT INTO stock (sku, qty) VALUES (%s, %s)
+            ON CONFLICT (sku) DO UPDATE SET qty = %s
+            """,
+            (body.sku, body.qty, body.qty),
+        )
+        hub.db.execute(
+            "INSERT INTO inventory_logs (id, sku, delta, reason, created_at) VALUES (%s, %s, %s, %s, %s)",
+            (
+                f"log_{body.sku}_{datetime.now(timezone.utc).timestamp():.0f}",
+                body.sku,
+                body.qty,
+                "admin_adjust",
+                datetime.now(timezone.utc).isoformat(),
+            ),
+        )
+        return {"sku": body.sku, "qty": body.qty}
+
     @app.post("/v1/admin/inventory/import")
     def inventory_import(body: InventoryImport, request: Request) -> dict:
         _require_admin(request, settings)
@@ -80,17 +107,45 @@ def register_admin_routes(app: FastAPI, hub, settings) -> None:
             )
         return {"imported": len(body.rows)}
 
+    @app.get("/v1/admin/orders/recent")
+    def recent_orders(request: Request, limit: int = 20) -> dict:
+        _require_admin(request, settings)
+        limit = max(1, min(limit, 50))
+        rows = hub.db.query(
+            "SELECT * FROM orders ORDER BY created_at DESC LIMIT %s",
+            (limit,),
+        )
+        orders = []
+        for row in rows:
+            address = loads(row["address"], {})
+            orders.append(
+                {
+                    "id": row["id"],
+                    "email": row["email"],
+                    "customer_name": address.get("name", ""),
+                    "phone": address.get("phone", ""),
+                    "total": row["total"],
+                    "status": row["status"],
+                    "payment_method": row["payment_method"],
+                    "payment_ref": row.get("payment_ref"),
+                    "items": loads(row["items"], []),
+                    "created_at": row["created_at"],
+                }
+            )
+        return {"orders": orders}
+
     @app.get("/v1/admin/orders/stream")
     async def admin_order_stream(request: Request) -> StreamingResponse:
         _require_admin(request, settings)
-        seen: set[str] = set()
 
         async def events():
+            existing = hub.db.query("SELECT id FROM orders", ())
+            seen = {row["id"] for row in existing}
             while True:
                 if await request.is_disconnected():
                     break
                 rows = hub.db.query(
-                    "SELECT * FROM orders ORDER BY created_at DESC LIMIT 20",
+                    "SELECT * FROM orders ORDER BY created_at DESC LIMIT 30",
                     (),
                 )
                 for row in rows:
@@ -98,8 +153,24 @@ def register_admin_routes(app: FastAPI, hub, settings) -> None:
                     if oid in seen:
                         continue
                     seen.add(oid)
-                    yield f"data: {json.dumps({'type': 'new_order', 'order': {'id': oid, 'total': row['total'], 'status': row['status'], 'email': row['email']}}, separators=(',', ':'))}\n\n"
-                await asyncio.sleep(3)
+                    address = loads(row["address"], {})
+                    payload = {
+                        "type": "new_order",
+                        "order": {
+                            "id": oid,
+                            "total": row["total"],
+                            "status": row["status"],
+                            "email": row["email"],
+                            "customer_name": address.get("name", ""),
+                            "phone": address.get("phone", ""),
+                            "payment_method": row["payment_method"],
+                            "payment_ref": row.get("payment_ref"),
+                            "items": loads(row["items"], []),
+                            "created_at": row["created_at"],
+                        },
+                    }
+                    yield f"data: {json.dumps(payload, separators=(',', ':'))}\n\n"
+                await asyncio.sleep(2)
 
         return StreamingResponse(events(), media_type="text/event-stream")
 
@@ -137,6 +208,48 @@ def register_admin_routes(app: FastAPI, hub, settings) -> None:
         )
         return {"categorization": cat, "fabric": fabric or None, "note": "Persist to Prisma Product tables in production."}
 
+    @app.post("/v1/admin/products/ingest-images")
+    async def ingest_images(
+        request: Request,
+        files: list[UploadFile] = File(...),
+        audience_hint: str | None = None,
+    ) -> dict:
+        _require_admin(request, settings)
+        if not files:
+            raise HTTPException(400, "Choose one or more images.")
+        try:
+            from categorize import categorize_product_image
+            from fabric_verify import verify_fabric_closeup
+        except ImportError as exc:
+            raise HTTPException(501, "AI pipeline package is not on PYTHONPATH.") from exc
+
+        results: list[dict] = []
+        for file in files:
+            data = await file.read()
+            if not data:
+                continue
+            cat = categorize_product_image(data, audience_hint=audience_hint, filename=file.filename or "")
+            fabric = {}
+            if file.filename and "fabric" in file.filename.lower():
+                fabric = verify_fabric_closeup(data)
+            job_id = f"ingest_{base64.urlsafe_b64encode(data[:12]).decode().strip('=')}_{len(results)}"
+            hub.db.execute(
+                """
+                INSERT INTO product_ingest_jobs (id, status, payload, created_at)
+                VALUES (%s, %s, %s, %s)
+                """,
+                (job_id, "succeeded", dumps({**cat, "fabric": fabric, "filename": file.filename}), datetime.now(timezone.utc).isoformat()),
+            )
+            results.append(
+                {
+                    "filename": file.filename,
+                    "job_id": job_id,
+                    "categorization": cat,
+                    "fabric": fabric or None,
+                }
+            )
+        return {"count": len(results), "results": results}
+
     @app.get("/v1/admin/catalog/stock-status")
     def stock_status(request: Request) -> dict:
         _require_admin(request, settings)
@@ -149,6 +262,7 @@ def register_admin_routes(app: FastAPI, hub, settings) -> None:
                 qty = stock_rows.get(sku, product["inventory"].get(size, 0))
                 out.append(
                     {
+                        "sku": sku,
                         "product_id": product["id"],
                         "name": product["name"],
                         "size": size,
