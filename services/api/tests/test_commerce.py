@@ -9,19 +9,19 @@ from PIL import Image, ImageDraw
 from app.catalog import suggest_size
 from app.main import create_app
 from app.settings import Settings
-from sutra_vision.fabric import analyze_image
-from sutra_vision.privacy import InferenceScratch
-from sutra_vision.tryon import render_tryon
+from scv_vision.fabric import analyze_image
+from scv_vision.privacy import InferenceScratch
+from scv_vision.tryon import render_tryon
 
 
 @pytest.fixture()
 def client(tmp_path, monkeypatch):
-    monkeypatch.setenv("DATABASE_URL", f"sqlite:///{tmp_path / 'sutra.db'}")
-    monkeypatch.setenv("SUTRA_DEMO", "1")
-    monkeypatch.setenv("SUTRA_SECRET", "test-secret")
-    monkeypatch.setenv("SUTRA_ADMIN_TOKEN", "admin-test")
-    monkeypatch.setenv("SUTRA_INFERENCE_TMP", str(tmp_path / "inference"))
-    monkeypatch.setenv("SUTRA_MEDIA_DIR", str(tmp_path / "media"))
+    monkeypatch.setenv("DATABASE_URL", f"sqlite:///{tmp_path / 'scv.db'}")
+    monkeypatch.setenv("SCV_DEMO", "1")
+    monkeypatch.setenv("SCV_SECRET", "test-secret")
+    monkeypatch.setenv("SCV_ADMIN_TOKEN", "admin-test")
+    monkeypatch.setenv("SCV_INFERENCE_TMP", str(tmp_path / "inference"))
+    monkeypatch.setenv("SCV_MEDIA_DIR", str(tmp_path / "media"))
     monkeypatch.setenv("VISION_URL", "")
     monkeypatch.setenv("REDIS_URL", "")
     app = create_app(Settings.load())
@@ -54,7 +54,7 @@ def test_register_login_measurements_and_delete(client):
     created = client.post(
         "/v1/auth/register",
         headers=headers,
-        json={"name": "Asha", "email": "asha@sutra.test", "password": "cloth-loom"},
+        json={"name": "Asha", "email": "asha@scv.test", "password": "cloth-loom"},
     )
     assert created.status_code == 200
     token = created.json()["token"]
@@ -69,7 +69,7 @@ def test_register_login_measurements_and_delete(client):
     logged = client.post(
         "/v1/auth/login",
         headers=headers,
-        json={"email": "asha@sutra.test", "password": "cloth-loom"},
+        json={"email": "asha@scv.test", "password": "cloth-loom"},
     )
     assert logged.status_code == 200
     removed = client.delete("/v1/me", headers=auth)
@@ -82,7 +82,7 @@ def test_demo_login_and_phone_otp(client):
     logged = client.post(
         "/v1/auth/login",
         headers=headers,
-        json={"email": "mira@sutra.test", "password": "loom-and-line"},
+        json={"email": "mira@scv.test", "password": "loom-and-line"},
     )
     assert logged.status_code == 200
     assert logged.json()["user"]["name"] == "Mira Sen"
@@ -101,7 +101,7 @@ def test_cart_checkout_shipping_and_stock(client):
     login = client.post(
         "/v1/auth/login",
         headers=headers,
-        json={"email": "mira@sutra.test", "password": "loom-and-line"},
+        json={"email": "mira@scv.test", "password": "loom-and-line"},
     )
     auth = {**headers, "Authorization": f"Bearer {login.json()['token']}"}
     product = client.get("/v1/products/sky-linen-playset").json()
@@ -119,7 +119,7 @@ def test_cart_checkout_shipping_and_stock(client):
         "/v1/checkout",
         headers=auth,
         json={
-            "email": "mira@sutra.test",
+            "email": "mira@scv.test",
             "method": "upi",
             "address": {
                 "name": "Mira Sen",

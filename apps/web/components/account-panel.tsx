@@ -124,7 +124,7 @@ export function AccountPanel() {
           Continue with Google
         </button>
         <p className="text-sm text-[var(--muted)]">
-          Studio preview account: mira@sutra.test / loom-and-line. Phone demo: +919800000000. Google and Apple sign-in activate when GOOGLE_CLIENT_ID and APPLE_CLIENT_ID are set on the API; tokens are checked with Google and Apple, not accepted blindly.
+          Studio preview account: mira@scv.test / loom-and-line. Phone demo: +919800000000. Google and Apple sign-in activate when GOOGLE_CLIENT_ID and APPLE_CLIENT_ID are set on the API; tokens are checked with Google and Apple, not accepted blindly.
         </p>
       </div>
     );

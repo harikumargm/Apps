@@ -2,7 +2,7 @@
 
 Readymade clothing for web and mobile. The shop is an editorial catalog. Two vision services sit behind it: a fabric reading, and a physics-based trial view.
 
-This build runs on a CPU. It does not pretend to host a TensorRT classifier or an IDM-VTON / OOTDiffusion stack. Those engines are selected with `SUTRA_FABRIC_ENGINE=tensorrt` and `SUTRA_TRYON_ENGINE=diffusion`, and they fail closed until the weights are mounted.
+This build runs on a CPU. It does not pretend to host a TensorRT classifier or an IDM-VTON / OOTDiffusion stack. Those engines are selected with `SCV_FABRIC_ENGINE=tensorrt` and `SCV_TRYON_ENGINE=diffusion`, and they fail closed until the weights are mounted.
 
 ## Layout
 
@@ -26,7 +26,7 @@ npm run dev
 
 Open http://127.0.0.1:3000. The web app proxies `/api` to the gateway.
 
-Preview account: `mira@sutra.test` / `loom-and-line`. Phone demo, only while `SUTRA_DEMO=1`: `+919800000000`, code `240126`.
+Preview account: `mira@scv.test` / `loom-and-line`. Phone demo, only while `SCV_DEMO=1`: `+919800000000`, code `240126`.
 
 ```bash
 cd apps/mobile

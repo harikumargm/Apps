@@ -17,11 +17,11 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from sutra_vision.fabric import EngineNotMounted as FabricMissing
-from sutra_vision.fabric import analyze_image
-from sutra_vision.privacy import InferenceScratch
-from sutra_vision.tryon import EngineNotMounted as TryOnMissing
-from sutra_vision.tryon import render_tryon
+from scv_vision.fabric import EngineNotMounted as FabricMissing
+from scv_vision.fabric import analyze_image
+from scv_vision.privacy import InferenceScratch
+from scv_vision.tryon import EngineNotMounted as TryOnMissing
+from scv_vision.tryon import render_tryon
 
 app = FastAPI(title="Sai Cotton Vastram Store Vision", version="1.0.0")
 scratch = InferenceScratch()

@@ -16,7 +16,7 @@
     />
     <script>
       try {
-        var raw = localStorage.getItem("sutra-atelier");
+        var raw = localStorage.getItem("scv-atelier");
         var theme = raw ? JSON.parse(raw).state.theme : "system";
         var dark =
           theme === "dark" || (theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);

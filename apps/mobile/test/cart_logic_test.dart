@@ -1,5 +1,5 @@
 import "package:flutter_test/flutter_test.dart";
-import "package:sutra/domain/models/product.dart";
+import "package:scv/domain/models/product.dart";
 
 void main() {
   test("merging the same size and colour adds quantity", () {

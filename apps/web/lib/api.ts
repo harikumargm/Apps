@@ -13,10 +13,10 @@ export class ApiError extends Error {
 }
 
 function sessionId(): string {
-  const existing = useStore.getState().sessionId || localStorage.getItem("sutra-session") || "";
+  const existing = useStore.getState().sessionId || localStorage.getItem("scv-session") || "";
   if (existing) return existing;
   const created = crypto.randomUUID();
-  localStorage.setItem("sutra-session", created);
+  localStorage.setItem("scv-session", created);
   useStore.getState().setSessionId(created);
   return created;
 }
@@ -24,7 +24,7 @@ function sessionId(): string {
 export function ensureSession(): string {
   const id = sessionId();
   if (!useStore.getState().sessionId) useStore.getState().setSessionId(id);
-  localStorage.setItem("sutra-session", id);
+  localStorage.setItem("scv-session", id);
   return id;
 }
 

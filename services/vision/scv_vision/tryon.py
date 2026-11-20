@@ -11,8 +11,8 @@ Pipeline, matching the product stages:
    driven by weight and stretch. This is a massing model (catenary-like
    hem, fold amplitude), not a diffusion sample.
 
-SUTRA_TRYON_ENGINE=diffusion fails closed until IDM-VTON / OOTDiffusion
-weights are mounted at SUTRA_VTON_WEIGHTS.
+SCV_TRYON_ENGINE=diffusion fails closed until IDM-VTON / OOTDiffusion
+weights are mounted at SCV_VTON_WEIGHTS.
 """
 
 from __future__ import annotations
@@ -36,12 +36,12 @@ class EngineNotMounted(RuntimeError):
 
 
 def active_engine_name() -> str:
-    name = os.getenv("SUTRA_TRYON_ENGINE", ENGINE_NAME)
+    name = os.getenv("SCV_TRYON_ENGINE", ENGINE_NAME)
     if name == "diffusion":
-        weights = os.getenv("SUTRA_VTON_WEIGHTS", "")
+        weights = os.getenv("SCV_VTON_WEIGHTS", "")
         raise EngineNotMounted(
             "Diffusion trial-view is not mounted. Expected weights at "
-            f"SUTRA_VTON_WEIGHTS (current: '{weights or 'unset'}'). "
+            f"SCV_VTON_WEIGHTS (current: '{weights or 'unset'}'). "
             "Use physics-drape-v1 for the CPU drape."
         )
     if name != ENGINE_NAME:

@@ -17,8 +17,8 @@ RETENTION_HOURS = 24
 
 class InferenceScratch:
     def __init__(self, root: Path | None = None) -> None:
-        env = os.getenv("SUTRA_INFERENCE_TMP")
-        self.root = Path(root or env or "/tmp/sutra-inference")
+        env = os.getenv("SCV_INFERENCE_TMP")
+        self.root = Path(root or env or "/tmp/scv-inference")
         self.root.mkdir(parents=True, exist_ok=True)
 
     def spill(self, data: bytes, suffix: str = ".bin") -> Path:

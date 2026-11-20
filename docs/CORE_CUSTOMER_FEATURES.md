@@ -15,7 +15,7 @@ This document maps requirements **1–9** to code in the monorepo. Existing piec
 **Apply Prisma (production):**
 ```bash
 cd packages/database
-export DATABASE_URL=postgresql://sutra:sutra@localhost:5432/sutra
+export DATABASE_URL=postgresql://scv:scv@localhost:5432/scv
 npx prisma migrate dev
 ```
 
@@ -55,7 +55,7 @@ npx prisma migrate dev
 |---------|------|
 | Auto-categorization & SEO copy | `services/ai-pipeline/categorize.py` **+** |
 | Fabric verification & GSM | `services/ai-pipeline/fabric_verify.py` **+** |
-| Try-on job enqueue | API `TryOnJob` + existing `services/vision/sutra_vision/tryon.py` **✓** |
+| Try-on job enqueue | API `TryOnJob` + existing `services/vision/scv_vision/tryon.py` **✓** |
 | WhatsApp templates | `services/whatsapp/templates.py`, `client.py` **+** |
 
 ## Phase 5 — Payments & integrations
@@ -70,7 +70,7 @@ npx prisma migrate dev
 ## Environment variables
 
 ```env
-DATABASE_URL=postgresql://sutra:sutra@postgres:5432/sutra
+DATABASE_URL=postgresql://scv:scv@postgres:5432/scv
 SECRET_KEY=...
 GOOGLE_CLIENT_ID=...
 RAZORPAY_KEY_ID=...

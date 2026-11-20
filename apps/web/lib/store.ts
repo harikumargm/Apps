@@ -95,7 +95,7 @@ export const useStore = create<State>()(
         }),
     }),
     {
-      name: "sutra-atelier",
+      name: "scv-atelier",
       partialize: (state) => ({
         items: state.items,
         version: state.version,

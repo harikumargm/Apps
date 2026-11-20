@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:sutra/ui/core/garment_painter.dart";
-import "package:sutra/ui/core/theme.dart";
+import "package:scv/ui/core/garment_painter.dart";
+import "package:scv/ui/core/theme.dart";
 
 void main() {
   testWidgets("garment canvas paints a framed cloth", (tester) async {
@@ -9,7 +9,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: CustomPaint(
-            painter: GarmentPainter(color: SutraColors.indigo, weave: "twill"),
+            painter: GarmentPainter(color: ScvColors.indigo, weave: "twill"),
             child: const SizedBox(width: 120, height: 160),
           ),
         ),

@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-class SutraColors {
+class ScvColors {
   static const paper = Color(0xFFF3EFE6);
   static const ink = Color(0xFF161513);
   static const muted = Color(0xFF6E685F);
@@ -10,17 +10,17 @@ class SutraColors {
   static const line = Color(0x24161513);
 }
 
-ThemeData sutraTheme() {
+ThemeData scvTheme() {
   final base = ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: SutraColors.paper,
-    colorScheme: ColorScheme.fromSeed(seedColor: SutraColors.indigo, surface: SutraColors.paper),
+    scaffoldBackgroundColor: ScvColors.paper,
+    colorScheme: ColorScheme.fromSeed(seedColor: ScvColors.indigo, surface: ScvColors.paper),
   );
   return base.copyWith(
-    textTheme: base.textTheme.apply(bodyColor: SutraColors.ink, displayColor: SutraColors.ink),
+    textTheme: base.textTheme.apply(bodyColor: ScvColors.ink, displayColor: ScvColors.ink),
     appBarTheme: const AppBarTheme(
-      backgroundColor: SutraColors.paper,
-      foregroundColor: SutraColors.ink,
+      backgroundColor: ScvColors.paper,
+      foregroundColor: ScvColors.ink,
       elevation: 0,
       scrolledUnderElevation: 0,
     ),
@@ -42,7 +42,7 @@ class BrandLockup extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text("VASTRAM", style: TextStyle(fontSize: 15, letterSpacing: 2, fontWeight: FontWeight.w600, color: Color(0xFF8A6A2A))),
-            Text("premium quality clothing", style: TextStyle(fontSize: 10, color: SutraColors.muted)),
+            Text("premium quality clothing", style: TextStyle(fontSize: 10, color: ScvColors.muted)),
           ],
         ),
       ],

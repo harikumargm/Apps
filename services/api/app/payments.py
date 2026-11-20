@@ -30,7 +30,7 @@ def create_intent(method: str, amount_inr: int, order_id: str) -> PaymentIntent:
             "razorpay",
             reference,
             {
-                "key_id": "rzp_test_sutra",
+                "key_id": "rzp_test_scv",
                 "order_id": reference,
                 "amount": amount_inr * 100,
                 "currency": "INR",

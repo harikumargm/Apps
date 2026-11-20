@@ -31,11 +31,11 @@ from app.security import bearer_user_id, hash_password, require_user_id, sign_to
 from app.settings import Settings
 from app.vision_client import analyze as vision_analyze
 from app.vision_client import tryon as vision_tryon
-from sutra_vision.fabric import EngineNotMounted as FabricMissing
-from sutra_vision.privacy import InferenceScratch
-from sutra_vision.tryon import EngineNotMounted as TryOnMissing
+from scv_vision.fabric import EngineNotMounted as FabricMissing
+from scv_vision.privacy import InferenceScratch
+from scv_vision.tryon import EngineNotMounted as TryOnMissing
 
-DEMO_EMAIL = "mira@sutra.test"
+DEMO_EMAIL = "mira@scv.test"
 DEMO_PASSWORD = "loom-and-line"
 DEMO_PHONE = "+919800000000"
 DEMO_OTP = "240126"
@@ -502,7 +502,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         hub.db.execute("DELETE FROM profile_media WHERE user_id = %s", (user_id,))
         hub.db.execute(
             "UPDATE orders SET email = %s, user_id = NULL, address = %s WHERE user_id = %s",
-            ("erased@sutra.invalid", dumps({"erased": True}), user_id),
+            ("erased@scv.invalid", dumps({"erased": True}), user_id),
         )
         hub.db.execute("DELETE FROM users WHERE id = %s", (user_id,))
         return {"deleted": True}
@@ -982,6 +982,6 @@ def _run_tryon(
     return result
 
 
-# Uvicorn loads this object. Tests set SUTRA_EAGER=0 and call create_app()
+# Uvicorn loads this object. Tests set SCV_EAGER=0 and call create_app()
 # against a temporary database instead.
-app = create_app() if os.getenv("SUTRA_EAGER", "1") == "1" else None
+app = create_app() if os.getenv("SCV_EAGER", "1") == "1" else None

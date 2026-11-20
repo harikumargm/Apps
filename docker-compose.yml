@@ -2,13 +2,13 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: sutra
-      POSTGRES_PASSWORD: sutra
-      POSTGRES_DB: sutra
+      POSTGRES_USER: scv
+      POSTGRES_PASSWORD: scv
+      POSTGRES_DB: scv
     ports:
       - "5432:5432"
     volumes:
-      - sutra-pg:/var/lib/postgresql/data
+      - scv-pg:/var/lib/postgresql/data
 
   redis:
     image: redis:7-alpine
@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: services/vision/Dockerfile
     environment:
-      SUTRA_INFERENCE_TMP: /tmp/sutra-inference
+      SCV_INFERENCE_TMP: /tmp/scv-inference
     ports:
       - "8001:8001"
 
@@ -29,11 +29,11 @@ services:
       context: .
       dockerfile: services/api/Dockerfile
     environment:
-      DATABASE_URL: postgresql://sutra:sutra@postgres:5432/sutra
+      DATABASE_URL: postgresql://scv:scv@postgres:5432/scv
       REDIS_URL: redis://redis:6379/0
       VISION_URL: http://vision:8001
-      SUTRA_DEMO: "1"
-      SUTRA_SECRET: change-me
+      SCV_DEMO: "1"
+      SCV_SECRET: change-me
       CATALOG_PATH: /srv/data/catalog.json
     ports:
       - "8000:8000"
@@ -43,4 +43,4 @@ services:
       - vision
 
 volumes:
-  sutra-pg:
+  scv-pg:
