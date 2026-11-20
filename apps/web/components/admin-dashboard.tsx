@@ -523,7 +523,7 @@ export function AdminDashboard() {
         {activeTab === "studio" && (
           <AdminStudioPanel
             defaultSource={defaultStudioSource}
-            adminToken={adminToken}
+            adminToken={token}
             catalogProducts={products.map((p) => ({ id: p.id, slug: p.slug, name: p.name, audience: p.audience }))}
           />
         )}
