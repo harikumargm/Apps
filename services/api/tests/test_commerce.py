@@ -297,3 +297,27 @@ def Path_inference(client: TestClient):
     from pathlib import Path
 
     return Path(client.app.state.hub.settings.inference_tmp)
+
+
+def test_admin_publish_studio_image_to_catalog(client):
+    headers = {"X-Admin-Token": "admin-test"}
+    products_response = client.get("/v1/admin/catalog/products", headers=headers)
+    assert products_response.status_code == 200
+    product = products_response.json()["products"][0]
+    publish = client.post(
+        "/v1/admin/catalog/publish-studio-image",
+        headers=headers,
+        json={
+            "product_id": product["id"],
+            "image_url": "https://example.test/studio-shot.jpg",
+            "section": "catalog_grid",
+            "studio_output_id": "GEN-test",
+            "preset_label": "Ghost mannequin",
+        },
+    )
+    assert publish.status_code == 200
+    body = publish.json()
+    assert body["product_id"] == product["id"]
+    assert body["image_url"].endswith("studio-shot.jpg")
+    detail = client.get(f"/v1/products/{product['slug']}").json()
+    assert detail.get("image") == "https://example.test/studio-shot.jpg"

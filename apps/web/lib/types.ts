@@ -30,6 +30,8 @@ export type Product = {
   reviews?: number;
   silhouette: string;
   image?: string;
+  gallery_images?: string[];
+  lookbook_images?: string[];
   summary: string;
   story: string;
   colors: Colorway[];

@@ -520,7 +520,13 @@ export function AdminDashboard() {
           </TabButton>
         </div>
 
-        {activeTab === "studio" && <AdminStudioPanel defaultSource={defaultStudioSource} />}
+        {activeTab === "studio" && (
+          <AdminStudioPanel
+            defaultSource={defaultStudioSource}
+            adminToken={adminToken}
+            catalogProducts={products.map((p) => ({ id: p.id, slug: p.slug, name: p.name, audience: p.audience }))}
+          />
+        )}
 
         {activeTab === "inventory" && (
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">

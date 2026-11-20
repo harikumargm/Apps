@@ -172,6 +172,17 @@ class Database:
                 created_at TEXT NOT NULL
             )
             """,
+            """
+            CREATE TABLE IF NOT EXISTS studio_catalog_publications (
+                id TEXT PRIMARY KEY,
+                product_id TEXT NOT NULL,
+                section TEXT NOT NULL,
+                image_url TEXT NOT NULL,
+                preset_label TEXT,
+                studio_output_id TEXT,
+                created_at TEXT NOT NULL
+            )
+            """,
         ]
         for statement in statements:
             self.execute(statement)

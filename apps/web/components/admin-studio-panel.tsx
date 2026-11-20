@@ -1,6 +1,19 @@
 "use client";
 
-import { Copy, Cpu, Eye, Image as ImageIcon, Layers, Sliders, Sparkles, Terminal, Wand2 } from "lucide-react";
+import {
+  Check,
+  Copy,
+  Cpu,
+  Eye,
+  Image as ImageIcon,
+  Layers,
+  ShoppingBag,
+  Sliders,
+  Sparkles,
+  Terminal,
+  Trash2,
+  Wand2,
+} from "lucide-react";
 import { useRef, useState } from "react";
 
 export const STUDIO_PRESETS = [
@@ -41,6 +54,36 @@ const PRESET_OUTPUTS: Record<string, string> = {
     "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=85",
 };
 
+export type CatalogSection =
+  | "catalog_grid"
+  | "combo_offers"
+  | "home_looks"
+  | "pdp_gallery"
+  | "lookbook";
+
+export const STORE_SECTION_OPTIONS: { id: CatalogSection; label: string; hint: string }[] = [
+  { id: "catalog_grid", label: "Men / Women catalog grid", hint: "Primary card on /catalog" },
+  { id: "combo_offers", label: "Combo offers collection", hint: "Tags SKU for /catalog/combo-offers" },
+  { id: "home_looks", label: "Homepage editorial row", hint: "Hero looks on /" },
+  { id: "pdp_gallery", label: "PDP gallery slide", hint: "Extra angle on product page" },
+  { id: "lookbook", label: "Lookbook / Instagram", hint: "Lookbook strip on PDP" },
+];
+
+export type StudioCatalogProduct = {
+  id: string;
+  slug: string;
+  name: string;
+  audience: string;
+};
+
+export type PublishedTo = {
+  productId: string;
+  productName: string;
+  section: CatalogSection;
+  sectionLabel: string;
+  storefrontPath: string;
+};
+
 export type GeneratedDisplay = {
   id: string;
   presetLabel: string;
@@ -48,6 +91,7 @@ export type GeneratedDisplay = {
   timestamp: string;
   imageUrl: string;
   promptUsed: string;
+  publishedTo?: PublishedTo;
 };
 
 type CleanOptions = {
@@ -57,7 +101,13 @@ type CleanOptions = {
   pureWhiteBg: boolean;
 };
 
-export function AdminStudioPanel({ defaultSource }: { defaultSource: string }) {
+type AdminStudioPanelProps = {
+  defaultSource: string;
+  adminToken: string;
+  catalogProducts: StudioCatalogProduct[];
+};
+
+export function AdminStudioPanel({ defaultSource, adminToken, catalogProducts }: AdminStudioPanelProps) {
   const studioFileInputRef = useRef<HTMLInputElement>(null);
   const [studioSourceImage, setStudioSourceImage] = useState(defaultSource);
   const [selectedPreset, setSelectedPreset] = useState<(typeof STUDIO_PRESETS)[number]["id"]>("ghost-mannequin");
@@ -83,6 +133,12 @@ export function AdminStudioPanel({ defaultSource }: { defaultSource: string }) {
       promptUsed: "Ghost mannequin, #FFFFFF backdrop, cotton weave preserved",
     },
   ]);
+  const [publishingId, setPublishingId] = useState<string | null>(null);
+  const [publishDraft, setPublishDraft] = useState<
+    Record<string, { productId: string; section: CatalogSection }>
+  >({});
+  const [studioNotice, setStudioNotice] = useState<string | null>(null);
+  const [studioError, setStudioError] = useState<string | null>(null);
 
   function handleGenerateStudioDisplay() {
     setIsGeneratingDisplay(true);
@@ -115,8 +171,92 @@ const response = await gemini.models.generateImage({
     window.setTimeout(() => setCopiedCursorSnippet(false), 2500);
   }
 
+  function removeOutput(id: string) {
+    setGeneratedOutputs((prev) => prev.filter((item) => item.id !== id));
+    setPublishDraft((prev) => {
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
+  }
+
+  function draftFor(assetId: string) {
+    const existing = publishDraft[assetId];
+    if (existing) return existing;
+    const first = catalogProducts[0];
+    return {
+      productId: first?.id ?? "",
+      section: "catalog_grid" as CatalogSection,
+    };
+  }
+
+  async function publishToStore(asset: GeneratedDisplay) {
+    if (!adminToken) {
+      setStudioError("Enter a valid admin token on the dashboard first.");
+      return;
+    }
+    const draft = draftFor(asset.id);
+    if (!draft.productId) {
+      setStudioError("Choose a catalog product.");
+      return;
+    }
+    setPublishingId(asset.id);
+    setStudioError(null);
+  setStudioNotice(null);
+    try {
+      const response = await fetch("/api/v1/admin/catalog/publish-studio-image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Admin-Token": adminToken,
+        },
+        body: JSON.stringify({
+          product_id: draft.productId,
+          image_url: asset.imageUrl,
+          section: draft.section,
+          studio_output_id: asset.id,
+          preset_label: asset.presetLabel,
+        }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(typeof payload.detail === "string" ? payload.detail : "Could not publish to catalog.");
+      }
+      const product = catalogProducts.find((p) => p.id === draft.productId);
+      const sectionLabel = STORE_SECTION_OPTIONS.find((s) => s.id === draft.section)?.label ?? draft.section;
+      setGeneratedOutputs((prev) =>
+        prev.map((item) =>
+          item.id === asset.id
+            ? {
+                ...item,
+                publishedTo: {
+                  productId: draft.productId,
+                  productName: product?.name ?? draft.productId,
+                  section: draft.section,
+                  sectionLabel,
+                  storefrontPath: payload.storefront_paths ?? "/catalog",
+                },
+              }
+            : item,
+        ),
+      );
+      setStudioNotice(`Live on store: ${product?.name ?? draft.productId} · ${sectionLabel}`);
+    } catch (err) {
+      setStudioError(err instanceof Error ? err.message : "Publish failed.");
+    } finally {
+      setPublishingId(null);
+    }
+  }
+
   return (
     <div className="space-y-6">
+      {studioNotice ? (
+        <p className="text-sm font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2">{studioNotice}</p>
+      ) : null}
+      {studioError ? (
+        <p className="text-sm font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{studioError}</p>
+      ) : null}
+
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
         <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
           <div>
@@ -124,7 +264,7 @@ const response = await gemini.models.generateImage({
               <Wand2 className="w-5 h-5 text-violet-600" />
               E-commerce product display studio
             </h3>
-            <p className="text-xs text-slate-500 mt-1">Gemini vision + Cursor pipeline · catalogue-ready PDP assets</p>
+            <p className="text-xs text-slate-500 mt-1">Gemini vision + Cursor pipeline · publish outputs into storefront sections</p>
           </div>
           <div className="flex gap-2">
             <button
@@ -263,25 +403,116 @@ const response = await gemini.models.generateImage({
       </div>
 
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
-        <h4 className="font-bold flex items-center gap-2 mb-4">
-          <Eye className="w-4 h-4 text-slate-600" />
-          Generated outputs
-        </h4>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {generatedOutputs.map((asset) => (
-            <figure key={asset.id} className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-              <img src={asset.imageUrl} alt={asset.presetLabel} className="w-full aspect-[3/4] object-cover" />
-              <figcaption className="p-3 text-xs space-y-1">
-                <p className="font-bold text-slate-900">{asset.presetLabel}</p>
-                <p className="text-slate-500">
-                  {asset.engine} · {asset.timestamp}
-                </p>
-                <p className="text-slate-600 line-clamp-2">{asset.promptUsed}</p>
-                <p className="font-mono text-[10px] text-slate-400">{asset.id}</p>
-              </figcaption>
-            </figure>
-          ))}
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <h4 className="font-bold flex items-center gap-2">
+            <Eye className="w-4 h-4 text-slate-600" />
+            Generated outputs
+          </h4>
+          <p className="text-xs text-slate-500">Remove local previews or push into a storefront section</p>
         </div>
+        {generatedOutputs.length === 0 ? (
+          <p className="text-sm text-slate-500 border border-dashed border-slate-200 rounded-xl p-8 text-center">
+            No studio outputs yet. Generate a display to publish it on the store.
+          </p>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {generatedOutputs.map((asset) => {
+              const draft = draftFor(asset.id);
+              return (
+                <figure key={asset.id} className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex flex-col">
+                  <div className="relative">
+                    <img src={asset.imageUrl} alt={asset.presetLabel} className="w-full aspect-[3/4] object-cover" />
+                    <button
+                      type="button"
+                      aria-label="Remove output"
+                      onClick={() => removeOutput(asset.id)}
+                      className="absolute top-2 right-2 p-1.5 rounded-lg bg-white/95 text-slate-700 hover:bg-red-50 hover:text-red-700 shadow"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                    {asset.publishedTo ? (
+                      <span className="absolute top-2 left-2 inline-flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-600 text-white text-[10px] font-bold uppercase">
+                        <Check className="w-3 h-3" /> Live
+                      </span>
+                    ) : null}
+                  </div>
+                  <figcaption className="p-3 text-xs space-y-2 flex-1 flex flex-col">
+                    <p className="font-bold text-slate-900">{asset.presetLabel}</p>
+                    <p className="text-slate-500">
+                      {asset.engine} · {asset.timestamp}
+                    </p>
+                    <p className="text-slate-600 line-clamp-2">{asset.promptUsed}</p>
+                    {asset.publishedTo ? (
+                      <p className="text-emerald-700 font-semibold">
+                        {asset.publishedTo.productName} · {asset.publishedTo.sectionLabel}
+                        <a className="block text-[10px] text-emerald-600 underline mt-0.5" href={asset.publishedTo.storefrontPath} target="_blank" rel="noreferrer">
+                          View on storefront
+                        </a>
+                      </p>
+                    ) : (
+                      <div className="mt-auto space-y-2 pt-2 border-t border-slate-200">
+                        <label className="grid gap-1">
+                          <span className="text-[10px] font-bold uppercase text-slate-500">Catalog product</span>
+                          <select
+                            value={draft.productId}
+                            onChange={(e) =>
+                              setPublishDraft((prev) => ({
+                                ...prev,
+                                [asset.id]: { ...draftFor(asset.id), productId: e.target.value },
+                              }))
+                            }
+                            className="h-9 rounded-lg border border-slate-200 px-2 text-xs w-full"
+                          >
+                            {catalogProducts.map((product) => (
+                              <option key={product.id} value={product.id}>
+                                {product.name} ({product.audience})
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                        <label className="grid gap-1">
+                          <span className="text-[10px] font-bold uppercase text-slate-500">Store section</span>
+                          <select
+                            value={draft.section}
+                            onChange={(e) =>
+                              setPublishDraft((prev) => ({
+                                ...prev,
+                                [asset.id]: {
+                                  ...draftFor(asset.id),
+                                  section: e.target.value as CatalogSection,
+                                },
+                              }))
+                            }
+                            className="h-9 rounded-lg border border-slate-200 px-2 text-xs w-full"
+                          >
+                            {STORE_SECTION_OPTIONS.map((section) => (
+                              <option key={section.id} value={section.id}>
+                                {section.label}
+                              </option>
+                            ))}
+                          </select>
+                          <span className="text-[10px] text-slate-400">
+                            {STORE_SECTION_OPTIONS.find((s) => s.id === draft.section)?.hint}
+                          </span>
+                        </label>
+                        <button
+                          type="button"
+                          disabled={publishingId === asset.id}
+                          onClick={() => void publishToStore(asset)}
+                          className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold disabled:opacity-60"
+                        >
+                          <ShoppingBag className="w-3.5 h-3.5" />
+                          {publishingId === asset.id ? "Publishing…" : "Add to store catalog"}
+                        </button>
+                      </div>
+                    )}
+                    <p className="font-mono text-[10px] text-slate-400">{asset.id}</p>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
