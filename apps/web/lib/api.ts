@@ -64,6 +64,20 @@ export const api = {
       method: "POST",
       body: JSON.stringify({ phone, code }),
     }),
+  googleSignIn: (idToken: string) =>
+    request<{ token: string; user: User }>("/v1/auth/oauth/google", {
+      method: "POST",
+      body: JSON.stringify({ id_token: idToken }),
+    }),
+  addWishlist: (product_id: string, color_name: string) =>
+    request<{ added: boolean }>("/v1/wishlist", {
+      method: "PUT",
+      body: JSON.stringify({ product_id, color_name }),
+    }),
+  removeWishlist: (product_id: string, color_name: string) =>
+    request<{ removed: boolean }>(`/v1/wishlist/${encodeURIComponent(product_id)}?color_name=${encodeURIComponent(color_name)}`, {
+      method: "DELETE",
+    }),
   saveMeasurements: (body: unknown) => request<User>("/v1/me/measurements", { method: "PATCH", body: JSON.stringify(body) }),
   orders: () => request<{ orders: Order[] }>("/v1/orders"),
   order: (id: string) => request<{ order: Order }>(`/v1/orders/${id}`),

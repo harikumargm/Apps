@@ -1,0 +1,305 @@
+// Vastram commerce — canonical PostgreSQL schema (Prisma 6).
+// FastAPI runtime uses services/api/app/db.py migrations in parallel for SQLite dev.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+  WAREHOUSE
+  MARKETING
+}
+
+enum OrderStatus {
+  CREATED
+  PAYMENT_PENDING
+  PAID
+  CONFIRMED
+  PACKED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  STRIPE
+  RAZORPAY
+  UPI
+  COD
+  WALLET
+}
+
+enum TryOnJobStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
+enum FabricBadge {
+  NONE
+  VERIFIED_COTTON
+  BLEND_DECLARED
+}
+
+model User {
+  id                String    @id @default(cuid())
+  email             String?   @unique
+  phone             String?   @unique
+  name              String?
+  passwordHash      String?   @map("password_hash")
+  oauthProvider     String?   @map("oauth_provider")
+  role              UserRole  @default(CUSTOMER)
+  measurements      Json      @default("{}")
+  whatsappOptIn     Boolean   @default(false) @map("whatsapp_opt_in")
+  consentTraining   Boolean   @default(false) @map("consent_training")
+  createdAt         DateTime  @default(now()) @map("created_at")
+
+  carts             Cart[]
+  wishlists         WishlistItem[]
+  orders            Order[]
+  tryOnJobs         TryOnJob[]
+  profileMedia      ProfileMedia[]
+
+  @@map("users")
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  audience    String   // men | women | unisex
+  parentId    String?  @map("parent_id")
+  parent      Category? @relation("CategoryTree", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryTree")
+  sortOrder   Int      @default(0) @map("sort_order")
+  products    ProductCategory[]
+
+  @@map("categories")
+}
+
+model Product {
+  id              String   @id @default(cuid())
+  legacyId        String?  @unique @map("legacy_id")
+  slug            String   @unique
+  name            String
+  summary         String
+  story           String   @default("")
+  edition         String?
+  audience        String
+  silhouette      String
+  occasion        String?
+  pricePaise      Int      @map("price_paise")
+  mrpPaise        Int      @map("mrp_paise")
+  rating          Decimal? @db.Decimal(2, 1)
+  reviewCount     Int      @default(0) @map("review_count")
+  featured        Boolean  @default(false)
+  status          String   @default("active")
+  seoTitle        String?  @map("seo_title")
+  seoDescription  String?  @map("seo_description")
+  imageUrl        String?  @map("image_url")
+  fabricBadge     FabricBadge @default(NONE) @map("fabric_badge")
+  estimatedGsm    Int?     @map("estimated_gsm")
+  aiCategorizedAt DateTime? @map("ai_categorized_at")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  variants        ProductVariant[]
+  categories      ProductCategory[]
+  fabric          ProductFabric?
+  media           ProductMedia[]
+  wishlists       WishlistItem[]
+
+  @@map("products")
+}
+
+model ProductCategory {
+  productId   String @map("product_id")
+  categoryId  String @map("category_id")
+  product     Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([productId, categoryId])
+  @@map("product_categories")
+}
+
+model ProductVariant {
+  id           String   @id @default(cuid())
+  productId    String   @map("product_id")
+  sku          String   @unique
+  colorName    String   @map("color_name")
+  colorHex     String   @map("color_hex")
+  size         String   // XS..XXL
+  stockQty     Int      @default(0) @map("stock_qty")
+  lowStockAt   Int      @default(10) @map("low_stock_threshold")
+  outOfStock   Boolean  @default(false) @map("out_of_stock")
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  inventoryLogs InventoryLog[]
+
+  @@unique([productId, colorName, size])
+  @@map("product_variants")
+}
+
+model ProductFabric {
+  productId      String  @id @map("product_id")
+  fiberType      String  @map("fiber_type")
+  composition    Json
+  weave          String
+  weight         String?
+  gsm            Int?
+  stretchIndex   Int?    @map("stretch_index")
+  care           Json    @default("[]")
+  aiVerified     Boolean @default(false) @map("ai_verified")
+  confidence     Decimal? @db.Decimal(3, 2)
+  engine         String?
+  millNote       String? @map("mill_note")
+  product        Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_fabrics")
+}
+
+model ProductMedia {
+  id         String   @id @default(cuid())
+  productId  String   @map("product_id")
+  url        String
+  kind       String   // hero | flat | fabric_closeup | ai_raw
+  sortOrder  Int      @default(0) @map("sort_order")
+  meta       Json     @default("{}")
+  createdAt  DateTime @default(now()) @map("created_at")
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_media")
+}
+
+model Cart {
+  sessionId   String   @id @map("session_id")
+  userId      String?  @map("user_id")
+  user        User?    @relation(fields: [userId], references: [id])
+  items       Json     @default("[]")
+  version     Int      @default(1)
+  abandonedAt DateTime? @map("abandoned_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("carts")
+}
+
+model WishlistItem {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  productId  String   @map("product_id")
+  colorName  String?  @map("color_name")
+  createdAt  DateTime @default(now()) @map("created_at")
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId, colorName])
+  @@map("wishlist_items")
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  userId          String?       @map("user_id")
+  sessionId       String?       @map("session_id")
+  email           String
+  items           Json
+  subtotalPaise   Int           @map("subtotal_paise")
+  shippingPaise   Int           @map("shipping_paise")
+  totalPaise      Int           @map("total_paise")
+  currency        String        @default("INR")
+  status          OrderStatus   @default(CREATED)
+  paymentMethod   PaymentMethod @map("payment_method")
+  paymentRef      String?       @map("payment_ref")
+  paymentPayload  Json?         @map("payment_payload")
+  address         Json
+  timeline        Json          @default("[]")
+  trackingCode    String?       @map("tracking_code")
+  codOtpVerified  Boolean       @default(false) @map("cod_otp_verified")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  user            User?         @relation(fields: [userId], references: [id])
+
+  @@map("orders")
+}
+
+model InventoryLog {
+  id          String   @id @default(cuid())
+  variantId   String   @map("variant_id")
+  delta       Int
+  reason      String   // sale | restock | adjustment | import
+  reference   String?
+  actor       String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  variant     ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+
+  @@map("inventory_logs")
+}
+
+model TryOnJob {
+  id           String         @id @default(cuid())
+  userId       String?        @map("user_id")
+  sessionId    String?        @map("session_id")
+  productId    String?        @map("product_id")
+  productSlug  String         @map("product_slug")
+  presetModel  String?        @map("preset_model")
+  status       TryOnJobStatus @default(QUEUED)
+  input        Json
+  result       Json?
+  error        String?
+  createdAt    DateTime       @default(now()) @map("created_at")
+  completedAt  DateTime?      @map("completed_at")
+  user         User?          @relation(fields: [userId], references: [id])
+
+  @@map("try_on_jobs")
+}
+
+model WebhookEvent {
+  id          String   @id @default(cuid())
+  provider    String   // stripe | razorpay | whatsapp
+  eventType   String   @map("event_type")
+  payload     Json
+  processed   Boolean  @default(false)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("webhook_events")
+}
+
+model ProfileMedia {
+  id               String   @id @default(cuid())
+  userId           String?  @map("user_id")
+  sessionId        String?  @map("session_id")
+  path             String
+  purpose          String
+  consentTraining  Boolean  @default(false) @map("consent_training")
+  createdAt        DateTime @default(now()) @map("created_at")
+  user             User?    @relation(fields: [userId], references: [id])
+
+  @@map("profile_media")
+}
+
+model OtpCode {
+  phone     String   @id
+  code      String
+  expiresAt DateTime @map("expires_at")
+
+  @@map("otp_codes")
+}
+
+model Campaign {
+  id          String   @id @default(cuid())
+  name        String
+  channel     String   // whatsapp | email
+  template    String
+  payload     Json
+  scheduledAt DateTime? @map("scheduled_at")
+  sentAt      DateTime? @map("sent_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("campaigns")
+}

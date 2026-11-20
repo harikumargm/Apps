@@ -8,7 +8,9 @@ import { useStore } from "@/lib/store";
 import type { Product } from "@/lib/types";
 import { FabricPanel } from "./fabric-panel";
 import { PriceLine, ProductCard, ProductVisual } from "./product-card";
+import { SizeGuide } from "./size-guide";
 import { TryOn } from "./try-on";
+import { WishlistToggle } from "./wishlist-toggle";
 
 export function Pdp({ product, related }: { product: Product; related: Product[] }) {
   const [color, setColor] = useState(product.colors[0]);
@@ -98,9 +100,11 @@ export function Pdp({ product, related }: { product: Product; related: Product[]
             Add to bag
           </button>
           <button className="btn btn-madder" onClick={() => setTryOpen(true)}>
-            Try it on me
+            Try on AI model
           </button>
+          <WishlistToggle productId={product.id} colorName={color.name} />
         </div>
+        <SizeGuide audience={product.audience} silhouette={product.silhouette} />
         {note && <p className="mt-3 text-sm">{note}</p>}
         <div className="mt-10">
           <FabricPanel fabric={product.fabric} />

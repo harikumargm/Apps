@@ -790,6 +790,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         hub.db.execute("DELETE FROM profile_media WHERE id = %s", (media_id,))
         return {"deleted": True}
 
+    from app.routes_admin import register_admin_routes
+    from app.routes_storefront import register_storefront_routes
+    from app.routes_webhooks import register_webhook_routes
+
+    register_storefront_routes(app, hub, settings)
+    register_admin_routes(app, hub, settings)
+    register_webhook_routes(app, hub, settings)
+
     return app
 
 

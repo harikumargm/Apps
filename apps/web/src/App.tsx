@@ -16,6 +16,7 @@ import OrderPage from "@/app/orders/[id]/page";
 import TrialPage from "@/app/trial/page";
 import VendorPage from "@/app/vendor/page";
 import PrivacyPage from "@/app/privacy/page";
+import AdminPage from "@/app/admin/page";
 
 export function App() {
   return (
@@ -42,6 +43,7 @@ export function App() {
           <Route path="/trial" element={<TrialPage />} />
           <Route path="/vendor" element={<VendorPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
