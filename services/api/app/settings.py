@@ -5,6 +5,18 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
+def _load_env_files() -> None:
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        return
+    api_root = Path(__file__).resolve().parents[1]
+    repo_root = api_root.parents[1]
+    # Never override an already-exported variable (shell / platform wins).
+    load_dotenv(repo_root / ".env", override=False)
+    load_dotenv(api_root / ".env", override=False)
+
+
 def _find_catalog() -> Path:
     override = os.getenv("CATALOG_PATH")
     if override:
@@ -33,6 +45,7 @@ class Settings:
 
     @classmethod
     def load(cls) -> "Settings":
+        _load_env_files()
         root = Path(__file__).resolve().parents[1]
         media = Path(os.getenv("SCV_MEDIA_DIR", str(root / "var" / "profile_media")))
         inference = Path(os.getenv("SCV_INFERENCE_TMP", "/tmp/scv-inference"))

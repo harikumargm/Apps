@@ -190,7 +190,17 @@ export function AdminDashboard() {
         fetch("/api/v1/admin/catalog/stock-status", { headers: h }),
         fetch("/api/v1/admin/orders/recent?limit=20", { headers: h }),
       ]);
-      if (!a.ok) throw new Error("Invalid admin token.");
+      if (!a.ok) {
+        if (a.status === 401) {
+          throw new Error(
+            "Admin token rejected. It must match SCV_ADMIN_TOKEN on the API process (default after copying .env.example: scv-admin-dev).",
+          );
+        }
+        if (a.status === 502 || a.status === 503 || a.status === 504) {
+          throw new Error("Admin API is not reachable. Start the API on port 8000, then Connect again.");
+        }
+        throw new Error(`Admin API error (${a.status}). Check Vite proxy and API logs.`);
+      }
       setAnalytics(await a.json());
       const stockJson = await s.json();
       setStock(stockJson.variants ?? []);
@@ -199,7 +209,11 @@ export function AdminDashboard() {
       localStorage.setItem(TOKEN_KEY, token);
     } catch (caught) {
       setAuthed(false);
-      setError(caught instanceof Error ? caught.message : "Could not reach admin API.");
+      if (caught instanceof TypeError && /fetch/i.test(caught.message)) {
+        setError("Could not reach /api — is the API running on port 8000 and is npm run dev proxying?");
+      } else {
+        setError(caught instanceof Error ? caught.message : "Could not reach admin API.");
+      }
     } finally {
       setBusy("");
     }
@@ -445,8 +459,23 @@ export function AdminDashboard() {
                 onChange={(e) => setToken(e.target.value)}
                 className="h-10 rounded-lg border border-slate-200 px-3 text-sm text-slate-900"
                 placeholder="scv-admin-dev"
+                autoComplete="off"
               />
+              <span className="text-[10px] text-slate-400">
+                Same value as <code className="font-mono">SCV_ADMIN_TOKEN</code> in repo <code className="font-mono">.env</code> (see{" "}
+                <code className="font-mono">.env.example</code>).
+              </span>
             </label>
+            <button
+              type="button"
+              onClick={() => {
+                setToken("scv-admin-dev");
+                localStorage.removeItem(TOKEN_KEY);
+              }}
+              className="h-10 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+            >
+              Use dev default
+            </button>
             <button
               type="button"
               onClick={() => void loadAll()}

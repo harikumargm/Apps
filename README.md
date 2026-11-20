@@ -26,6 +26,8 @@ npm run dev
 
 Open http://127.0.0.1:3000. The web app proxies `/api` to the gateway.
 
+Copy `.env.example` to `.env` at the repo root so the API picks up `SCV_ADMIN_TOKEN=scv-admin-dev`. Admin UI: http://127.0.0.1:3000/admin — paste that token and **Connect**. If Connect fails, restart the API after changing `.env` and click **Use dev default** (clears a stale saved token).
+
 Preview account: `mira@scv.test` / `loom-and-line`. Phone demo, only while `SCV_DEMO=1`: `+919800000000`, code `240126`.
 
 ```bash
