@@ -68,10 +68,10 @@ export function AccountPanel() {
   if (!user) {
     return (
       <div className="grid max-w-lg gap-5">
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {(["login", "register", "phone"] as const).map((item) => (
             <button key={item} className={`chip capitalize ${mode === item ? "active" : ""}`} onClick={() => setMode(item)}>
-              {item === "phone" ? "Phone" : item}
+              {item === "phone" ? "Phone OTP" : item}
             </button>
           ))}
         </div>
@@ -110,8 +110,21 @@ export function AccountPanel() {
           {info && <p className="text-sm">{info}</p>}
           <button className="btn btn-solid">{mode === "phone" && !form.code ? "Send code" : "Continue"}</button>
         </form>
+        <button
+          type="button"
+          className="btn btn-line"
+          onClick={() => {
+            const token = window.prompt("Paste Google ID token (requires GOOGLE_CLIENT_ID on API)");
+            if (!token) return;
+            void api.googleSignIn(token).then((result) => setAuth(result.token, result.user)).catch((caught) => {
+              setError(caught instanceof ApiError ? caught.message : "Google sign-in failed.");
+            });
+          }}
+        >
+          Continue with Google
+        </button>
         <p className="text-sm text-[var(--muted)]">
-          Studio preview account: mira@sutra.test / loom-and-line. Phone demo: +919800000000. Google and Apple sign-in activate when GOOGLE_CLIENT_ID and APPLE_CLIENT_ID are set on the API; tokens are checked with Google and Apple, not accepted blindly.
+          Studio preview account: mira@scv.test / loom-and-line. Phone demo: +919800000000. Google and Apple sign-in activate when GOOGLE_CLIENT_ID and APPLE_CLIENT_ID are set on the API; tokens are checked with Google and Apple, not accepted blindly.
         </p>
       </div>
     );

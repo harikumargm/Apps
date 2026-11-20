@@ -8,12 +8,15 @@ export function lineKey(item: Pick<CartLine, "product_id" | "size" | "color">): 
   return `${item.product_id}|${item.size}|${item.color}`;
 }
 
+export type WishlistEntry = { product_id: string; color_name: string };
+
 type State = {
   items: CartLine[];
   version: number;
   dirty: boolean;
   token: string | null;
   user: User | null;
+  wishlist: WishlistEntry[];
   sessionId: string;
   theme: "light" | "dark" | "system";
   cartOpen: boolean;
@@ -29,6 +32,7 @@ type State = {
   remove: (key: string) => void;
   replaceFromServer: (items: CartLine[], version: number) => void;
   markDirty: () => void;
+  toggleWishlist: (productId: string, colorName: string) => void;
 };
 
 export const useStore = create<State>()(
@@ -39,6 +43,7 @@ export const useStore = create<State>()(
       dirty: false,
       token: null,
       user: null,
+      wishlist: [],
       sessionId: "",
       theme: "system",
       cartOpen: false,
@@ -79,9 +84,18 @@ export const useStore = create<State>()(
         })),
       replaceFromServer: (items, version) => set({ items, version, dirty: false }),
       markDirty: () => set({ dirty: true }),
+      toggleWishlist: (productId, colorName) =>
+        set((state) => {
+          const exists = state.wishlist.some((item) => item.product_id === productId && item.color_name === colorName);
+          return {
+            wishlist: exists
+              ? state.wishlist.filter((item) => !(item.product_id === productId && item.color_name === colorName))
+              : [...state.wishlist, { product_id: productId, color_name: colorName }],
+          };
+        }),
     }),
     {
-      name: "sutra-atelier",
+      name: "scv-atelier",
       partialize: (state) => ({
         items: state.items,
         version: state.version,
@@ -89,6 +103,7 @@ export const useStore = create<State>()(
         user: state.user,
         sessionId: state.sessionId,
         theme: state.theme,
+        wishlist: state.wishlist,
       }),
       onRehydrateStorage: () => (state) => {
         state?.setHydrated(true);

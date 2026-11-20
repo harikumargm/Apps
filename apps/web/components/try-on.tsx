@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { ApiError, api } from "@/lib/api";
+import { TRYON_PRESETS } from "@/lib/tryon-models";
 import { useStore } from "@/lib/store";
 import type { Product, TryOnResult } from "@/lib/types";
 
@@ -17,7 +18,8 @@ export function TryOn({ product, initialColor }: { product: Product; initialColo
   const [training, setTraining] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [mode, setMode] = useState<"twin" | "photo">("twin");
+  const [mode, setMode] = useState<"twin" | "photo" | "preset">("preset");
+  const [presetId, setPresetId] = useState(TRYON_PRESETS[0].id);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<TryOnResult | null>(null);
@@ -28,7 +30,21 @@ export function TryOn({ product, initialColor }: { product: Product; initialColo
     setError("");
     setPending(true);
     try {
-      if (mode === "photo") {
+      if (mode === "preset") {
+        const preset = TRYON_PRESETS.find((entry) => entry.id === presetId) ?? TRYON_PRESETS[0];
+        setResult(
+          await api.tryOnTwin({
+            product_slug: product.slug,
+            color,
+            height_cm: preset.height_cm,
+            chest_cm: preset.chest_cm,
+            waist_cm: preset.waist_cm,
+            hips_cm: preset.hips_cm,
+            consent: true,
+            consent_training: training,
+          }),
+        );
+      } else if (mode === "photo") {
         if (!file) throw new ApiError(400, "Choose a full-length photograph.");
         const body = new FormData();
         body.append("photo", file);
@@ -64,14 +80,36 @@ export function TryOn({ product, initialColor }: { product: Product; initialColo
 
   return (
     <div className="grid gap-6">
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
+        <button className={`chip ${mode === "preset" ? "active" : ""}`} onClick={() => setMode("preset")}>
+          AI model
+        </button>
         <button className={`chip ${mode === "twin" ? "active" : ""}`} onClick={() => setMode("twin")}>
-          Digital twin
+          Your measurements
         </button>
         <button className={`chip ${mode === "photo" ? "active" : ""}`} onClick={() => setMode("photo")}>
           Your photograph
         </button>
       </div>
+      {mode === "preset" && (
+        <motionless className="grid gap-2 sm:grid-cols-2">
+          {TRYON_PRESETS.map((preset) => (
+            <button
+              key={preset.id}
+              className={`chip text-left ${presetId === preset.id ? "active" : ""}`}
+              onClick={() => {
+                setPresetId(preset.id);
+                setHeight(preset.height_cm);
+                setChest(preset.chest_cm);
+                setWaist(preset.waist_cm);
+                setHips(preset.hips_cm);
+              }}
+            >
+              {preset.label} · {preset.body_type} · {preset.skin_tone}
+            </button>
+          ))}
+        </motionless>
+      )}
       <div className="flex flex-wrap gap-2">
         {product.colors.map((entry) => (
           <button
@@ -117,7 +155,7 @@ export function TryOn({ product, initialColor }: { product: Product; initialColo
         <span>Store a training preference on my account. This build still does not export imagery to a training set.</span>
       </label>
       <button className="btn btn-madder w-full sm:w-auto" disabled={!consent || pending} onClick={() => void run()}>
-        {pending ? "Draping…" : "Try it on me"}
+        {pending ? "Draping…" : "Try on AI model"}
       </button>
       {error && <p className="text-sm text-[var(--madder)]">{error}</p>}
       {pending && <div className="skeleton aspect-[4/5] w-full" />}
@@ -148,6 +186,10 @@ export function TryOn({ product, initialColor }: { product: Product; initialColo
       )}
     </div>
   );
+}
+
+function motionless({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={className}>{children}</div>;
 }
 
 function Slider({

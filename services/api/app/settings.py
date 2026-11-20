@@ -5,6 +5,18 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
+def _load_env_files() -> None:
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        return
+    api_root = Path(__file__).resolve().parents[1]
+    repo_root = api_root.parents[1]
+    # Never override an already-exported variable (shell / platform wins).
+    load_dotenv(repo_root / ".env", override=False)
+    load_dotenv(api_root / ".env", override=False)
+
+
 def _find_catalog() -> Path:
     override = os.getenv("CATALOG_PATH")
     if override:
@@ -33,16 +45,17 @@ class Settings:
 
     @classmethod
     def load(cls) -> "Settings":
+        _load_env_files()
         root = Path(__file__).resolve().parents[1]
-        media = Path(os.getenv("SUTRA_MEDIA_DIR", str(root / "var" / "profile_media")))
-        inference = Path(os.getenv("SUTRA_INFERENCE_TMP", "/tmp/sutra-inference"))
+        media = Path(os.getenv("SCV_MEDIA_DIR", str(root / "var" / "profile_media")))
+        inference = Path(os.getenv("SCV_INFERENCE_TMP", "/tmp/scv-inference"))
         return cls(
-            db_url=os.getenv("DATABASE_URL", f"sqlite:///{root / 'var' / 'sutra.db'}"),
+            db_url=os.getenv("DATABASE_URL", f"sqlite:///{root / 'var' / 'scv.db'}"),
             redis_url=os.getenv("REDIS_URL", ""),
             vision_url=os.getenv("VISION_URL", "").rstrip("/"),
-            secret=os.getenv("SUTRA_SECRET", "sutra-dev-secret-change-me"),
-            demo=os.getenv("SUTRA_DEMO", "1") == "1",
-            admin_token=os.getenv("SUTRA_ADMIN_TOKEN", "sutra-admin-dev"),
+            secret=os.getenv("SCV_SECRET", "scv-dev-secret-change-me"),
+            demo=os.getenv("SCV_DEMO", "1") == "1",
+            admin_token=os.getenv("SCV_ADMIN_TOKEN", "scv-admin-dev"),
             google_client_id=os.getenv("GOOGLE_CLIENT_ID", ""),
             apple_client_id=os.getenv("APPLE_CLIENT_ID", ""),
             catalog_path=_find_catalog(),

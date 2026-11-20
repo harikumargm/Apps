@@ -1185,6 +1185,676 @@
       "mrp": 3310,
       "rating": 3.9,
       "reviews": 997
+    },
+    {
+      "id": "p_combo_black_gold",
+      "slug": "black-gold-track-combo",
+      "name": "Black & Gold Track Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 2490,
+      "silhouette": "set",
+      "image": "/catalog/combos/set-classic-a.jpg",
+      "summary": "Tee and tapered jogger with gold piping.",
+      "story": "Tee and tapered jogger with gold piping. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#111111"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 4490,
+      "rating": 4.3,
+      "reviews": 214
+    },
+    {
+      "id": "p_combo_teal_stripe",
+      "slug": "teal-stripe-track-combo",
+      "name": "Teal Stripe Track Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 2290,
+      "silhouette": "set",
+      "image": "/catalog/combos/set-classic-b.jpg",
+      "summary": "Color-block tee with teal triple-stripe track pants.",
+      "story": "Color-block tee with teal triple-stripe track pants. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Teal",
+          "hex": "#1f6f8b"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 4190,
+      "rating": 4.1,
+      "reviews": 178
+    },
+    {
+      "id": "p_combo_black_cargo",
+      "slug": "black-cargo-track-combo",
+      "name": "Black Cargo Track Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 2690,
+      "silhouette": "set",
+      "image": "/catalog/combos/set-classic-c.jpg",
+      "summary": "Grey-block tee paired with black cargo joggers.",
+      "story": "Grey-block tee paired with black cargo joggers. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1a1a1a"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 4790,
+      "rating": 4.0,
+      "reviews": 156
+    },
+    {
+      "id": "p_combo_navy_star",
+      "slug": "navy-star-track-combo",
+      "name": "Navy Star Track Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 2390,
+      "silhouette": "set",
+      "image": "/catalog/combos/set-athletic-a.jpg",
+      "summary": "Navy tee and jogger set with star crest.",
+      "story": "Navy tee and jogger set with star crest. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1e3a5f"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 4290,
+      "rating": 4.2,
+      "reviews": 203
+    },
+    {
+      "id": "p_combo_olive_stripe",
+      "slug": "olive-stripe-track-combo",
+      "name": "Olive Stripe Track Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 2190,
+      "silhouette": "set",
+      "image": "/catalog/combos/set-athletic-b.jpg",
+      "summary": "Olive color-block tee with triple-white stripe pants.",
+      "story": "Olive color-block tee with triple-white stripe pants. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Olive",
+          "hex": "#556b2f"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 3990,
+      "rating": 4.4,
+      "reviews": 267
+    },
+    {
+      "id": "p_combo_maroon_cargo",
+      "slug": "maroon-cargo-track-combo",
+      "name": "Maroon Cargo Track Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 2590,
+      "silhouette": "set",
+      "image": "/catalog/combos/set-athletic-c.jpg",
+      "summary": "Maroon tee with black cargo joggers.",
+      "story": "Maroon tee with black cargo joggers. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Maroon",
+          "hex": "#6b1e3d"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 4590,
+      "rating": 3.9,
+      "reviews": 142
+    },
+    {
+      "id": "p_combo_cobalt_block",
+      "slug": "cobalt-block-tee-combo",
+      "name": "Cobalt Block Tee Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 1990,
+      "silhouette": "set",
+      "image": "/catalog/combos/cobalt-block-tee.jpg",
+      "summary": "Cobalt color-block tee bundled with matching track pant.",
+      "story": "Cobalt color-block tee bundled with matching track pant. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Cobalt",
+          "hex": "#2563eb"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 3490,
+      "rating": 4.5,
+      "reviews": 391
+    },
+    {
+      "id": "p_combo_jogger_black_gold",
+      "slug": "black-gold-jogger-combo",
+      "name": "Black Gold Jogger Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 1490,
+      "silhouette": "set",
+      "image": "/catalog/combos/jogger-a.jpg",
+      "summary": "Second jogger in the bundle \u2014 black with gold zip pockets.",
+      "story": "Second jogger in the bundle \u2014 black with gold zip pockets. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#111111"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 2790,
+      "rating": 4.0,
+      "reviews": 88
+    },
+    {
+      "id": "p_combo_jogger_teal",
+      "slug": "teal-track-jogger-combo",
+      "name": "Teal Track Jogger Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 1390,
+      "silhouette": "set",
+      "image": "/catalog/combos/jogger-b.jpg",
+      "summary": "Teal straight-leg track with triple side stripes.",
+      "story": "Teal straight-leg track with triple side stripes. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Teal",
+          "hex": "#2a6f7a"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 2590,
+      "rating": 4.2,
+      "reviews": 74
+    },
+    {
+      "id": "p_combo_jogger_cargo",
+      "slug": "black-cargo-jogger-combo",
+      "name": "Black Cargo Jogger Combo",
+      "edition": "Combo Offers",
+      "departments": [
+        "men",
+        "combo_offers",
+        "sportwear",
+        "activewear"
+      ],
+      "audience": "men",
+      "occasion": "sport",
+      "price": 1590,
+      "silhouette": "set",
+      "image": "/catalog/combos/jogger-c.jpg",
+      "summary": "Black cargo jogger add-on for your combo cart.",
+      "story": "Black cargo jogger add-on for your combo cart. Sold as a single combo SKU with one shared size across tee and pant.",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1a1a1a"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "fabric": {
+        "type": "Synthetic blend",
+        "composition": [
+          {
+            "fiber": "Polyester",
+            "percent": 88
+          },
+          {
+            "fiber": "Elastane",
+            "percent": 12
+          }
+        ],
+        "weave": "knit",
+        "weight": "midweight",
+        "gsm": 220,
+        "stretch_index": 32,
+        "care": [
+          "Machine wash cold",
+          "Wash with like colours",
+          "Hang dry"
+        ],
+        "ai_verified": false,
+        "confidence": 0.78,
+        "engine": "catalogue-photo",
+        "mill_note": "Combo bundle photographed as styled set. Jersey tee and track pant sold together."
+      },
+      "inventory": {
+        "S": 6,
+        "M": 10,
+        "L": 9,
+        "XL": 5
+      },
+      "mrp": 2890,
+      "rating": 3.8,
+      "reviews": 61
     }
   ]
 }

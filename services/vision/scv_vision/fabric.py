@@ -5,7 +5,7 @@ the image does contain: thread direction, texture energy, and sheen.
 Fibre percentages are a scored hypothesis, returned with a confidence so
 the shop can keep mill specifications as the composition of record.
 
-Set SUTRA_FABRIC_ENGINE=tensorrt to require the GPU classifier. This
+Set SCV_FABRIC_ENGINE=tensorrt to require the GPU classifier. This
 build fails closed in that mode instead of pretending the heuristic is
 TensorRT.
 """
@@ -27,7 +27,7 @@ class EngineNotMounted(RuntimeError):
 
 
 def active_engine_name() -> str:
-    name = os.getenv("SUTRA_FABRIC_ENGINE", ENGINE_NAME)
+    name = os.getenv("SCV_FABRIC_ENGINE", ENGINE_NAME)
     if name == "tensorrt":
         raise EngineNotMounted(
             "TensorRT fabric classifier is not mounted on this host. "

@@ -13,7 +13,7 @@ class GarmentPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawRect(Offset.zero & size, Paint()..color = SutraColors.art);
+    canvas.drawRect(Offset.zero & size, Paint()..color = ScvColors.art);
     final path = Path()
       ..moveTo(size.width * 0.38, size.height * 0.16)
       ..quadraticBezierTo(size.width * 0.5, size.height * 0.24, size.width * 0.62, size.height * 0.16)
@@ -26,7 +26,7 @@ class GarmentPainter extends CustomPainter {
       ..close();
     canvas.drawPath(path, Paint()..color = color);
     final thread = Paint()
-      ..color = SutraColors.ink.withValues(alpha: 0.18)
+      ..color = ScvColors.ink.withValues(alpha: 0.18)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
     if (weave == "twill") {
@@ -100,7 +100,7 @@ class _WeavePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final shaderProgram = program;
     if (shaderProgram == null) {
-      GarmentPainter(color: SutraColors.art, weave: "plain", phase: time).paint(canvas, size);
+      GarmentPainter(color: ScvColors.art, weave: "plain", phase: time).paint(canvas, size);
       return;
     }
     final shader = shaderProgram.fragmentShader();

@@ -13,10 +13,10 @@ export class ApiError extends Error {
 }
 
 function sessionId(): string {
-  const existing = useStore.getState().sessionId || localStorage.getItem("sutra-session") || "";
+  const existing = useStore.getState().sessionId || localStorage.getItem("scv-session") || "";
   if (existing) return existing;
   const created = crypto.randomUUID();
-  localStorage.setItem("sutra-session", created);
+  localStorage.setItem("scv-session", created);
   useStore.getState().setSessionId(created);
   return created;
 }
@@ -24,7 +24,7 @@ function sessionId(): string {
 export function ensureSession(): string {
   const id = sessionId();
   if (!useStore.getState().sessionId) useStore.getState().setSessionId(id);
-  localStorage.setItem("sutra-session", id);
+  localStorage.setItem("scv-session", id);
   return id;
 }
 
@@ -63,6 +63,20 @@ export const api = {
     request<{ token: string; user: User }>("/v1/auth/otp/verify", {
       method: "POST",
       body: JSON.stringify({ phone, code }),
+    }),
+  googleSignIn: (idToken: string) =>
+    request<{ token: string; user: User }>("/v1/auth/oauth/google", {
+      method: "POST",
+      body: JSON.stringify({ id_token: idToken }),
+    }),
+  addWishlist: (product_id: string, color_name: string) =>
+    request<{ added: boolean }>("/v1/wishlist", {
+      method: "PUT",
+      body: JSON.stringify({ product_id, color_name }),
+    }),
+  removeWishlist: (product_id: string, color_name: string) =>
+    request<{ removed: boolean }>(`/v1/wishlist/${encodeURIComponent(product_id)}?color_name=${encodeURIComponent(color_name)}`, {
+      method: "DELETE",
     }),
   saveMeasurements: (body: unknown) => request<User>("/v1/me/measurements", { method: "PATCH", body: JSON.stringify(body) }),
   orders: () => request<{ orders: Order[] }>("/v1/orders"),

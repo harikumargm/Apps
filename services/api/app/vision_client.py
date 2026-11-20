@@ -21,7 +21,7 @@ def analyze(settings: Settings, data: bytes) -> dict:
         )
         response.raise_for_status()
         return response.json()
-    from sutra_vision.fabric import analyze_image
+    from scv_vision.fabric import analyze_image
 
     return analyze_image(data)
 
@@ -49,6 +49,6 @@ def tryon(settings: Settings, **kwargs) -> dict:
 
         body["image_bytes"] = base64.b64decode(body.pop("image_base64"))
         return body
-    from sutra_vision.tryon import render_tryon
+    from scv_vision.tryon import render_tryon
 
     return render_tryon(**kwargs)

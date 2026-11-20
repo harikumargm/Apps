@@ -31,7 +31,7 @@ class HomeView extends ConsumerWidget {
       children: [
         const Image(image: AssetImage("assets/brand/vastram-lockup.jpg"), height: 220),
         const SizedBox(height: 16),
-        const Text("MONSOON 2026", style: TextStyle(letterSpacing: 2, fontSize: 11, color: SutraColors.muted)),
+        const Text("MONSOON 2026", style: TextStyle(letterSpacing: 2, fontSize: 11, color: ScvColors.muted)),
         const SizedBox(height: 8),
         const Text("The cloth,\nafter the loom.", style: TextStyle(fontSize: 42, height: 0.95, fontFamily: "serif")),
         const SizedBox(height: 12),
@@ -44,8 +44,8 @@ class HomeView extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 24),
-        if (shop.loading) const LinearProgressIndicator(color: SutraColors.indigo),
-        if (shop.error.isNotEmpty) Text(shop.error, style: const TextStyle(color: SutraColors.madder)),
+        if (shop.loading) const LinearProgressIndicator(color: ScvColors.indigo),
+        if (shop.error.isNotEmpty) Text(shop.error, style: const TextStyle(color: ScvColors.madder)),
         for (final product in featured) ...[
           const SizedBox(height: 16),
           ProductTile(product: product),
@@ -113,7 +113,7 @@ class _CatalogViewState extends ConsumerState<CatalogView> {
         ),
         Expanded(
           child: shop.loading
-              ? const Center(child: CircularProgressIndicator(color: SutraColors.indigo))
+              ? const Center(child: CircularProgressIndicator(color: ScvColors.indigo))
               : GridView.builder(
                   padding: const EdgeInsets.all(16),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -155,7 +155,7 @@ class ProductTile extends ConsumerWidget {
                 : Image.asset(_assetFor(product.image!), fit: BoxFit.contain),
           ),
           const SizedBox(height: 8),
-          Text(product.fabric.type, style: const TextStyle(fontSize: 11, letterSpacing: 1, color: SutraColors.muted)),
+          Text(product.fabric.type, style: const TextStyle(fontSize: 11, letterSpacing: 1, color: ScvColors.muted)),
           Text(product.name, style: const TextStyle(fontSize: 18)),
           Text(inr(product.price)),
         ],
@@ -203,7 +203,7 @@ class _ProductViewState extends ConsumerState<ProductView> {
           const Text("AI VERIFIED FABRIC BREAKDOWN", style: TextStyle(letterSpacing: 1, fontSize: 11)),
           const SizedBox(height: 6),
           Text("${product.fabric.compositionLabel}\n${product.fabric.weave} · ${product.fabric.weight} · stretch ${product.fabric.stretchIndex}"),
-          Text(product.fabric.millNote, style: const TextStyle(color: SutraColors.muted)),
+          Text(product.fabric.millNote, style: const TextStyle(color: ScvColors.muted)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,
@@ -214,7 +214,7 @@ class _ProductViewState extends ConsumerState<ProductView> {
           ),
           const SizedBox(height: 16),
           FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: SutraColors.ink, foregroundColor: SutraColors.paper, minimumSize: const Size.fromHeight(48)),
+            style: FilledButton.styleFrom(backgroundColor: ScvColors.ink, foregroundColor: ScvColors.paper, minimumSize: const Size.fromHeight(48)),
             onPressed: () {
               ref.read(bagControllerProvider.notifier).add(CartLine(
                     productId: product.id,
@@ -353,7 +353,7 @@ class AccountView extends ConsumerStatefulWidget {
 }
 
 class _AccountViewState extends ConsumerState<AccountView> {
-  final email = TextEditingController(text: "mira@sutra.test");
+  final email = TextEditingController(text: "mira@scv.test");
   final password = TextEditingController(text: "loom-and-line");
   String status = "Preview account is filled in.";
 

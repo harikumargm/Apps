@@ -1,4 +1,4 @@
-package studio.sutra.sutra
+package studio.scv.scv
 
 import io.flutter.embedding.android.FlutterActivity
 

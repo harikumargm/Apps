@@ -7,6 +7,7 @@ import NotFound from "@/app/not-found";
 import CatalogPage from "@/app/catalog/page";
 import ActivewearPage from "@/app/catalog/activewear/page";
 import SportwearPage from "@/app/catalog/sportwear/page";
+import ComboOffersPage from "@/app/catalog/combo-offers/page";
 import ProductPage from "@/app/product/[slug]/page";
 import CartPage from "@/app/cart/page";
 import CheckoutPage from "@/app/checkout/page";
@@ -15,6 +16,7 @@ import OrderPage from "@/app/orders/[id]/page";
 import TrialPage from "@/app/trial/page";
 import VendorPage from "@/app/vendor/page";
 import PrivacyPage from "@/app/privacy/page";
+import AdminPage from "@/app/admin/page";
 
 export function App() {
   return (
@@ -32,6 +34,7 @@ export function App() {
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/catalog/activewear" element={<ActivewearPage />} />
           <Route path="/catalog/sportwear" element={<SportwearPage />} />
+          <Route path="/catalog/combo-offers" element={<ComboOffersPage />} />
           <Route path="/product/:slug" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
@@ -40,6 +43,7 @@ export function App() {
           <Route path="/trial" element={<TrialPage />} />
           <Route path="/vendor" element={<VendorPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

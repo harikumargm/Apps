@@ -8,7 +8,9 @@ import { useStore } from "@/lib/store";
 import type { Product } from "@/lib/types";
 import { FabricPanel } from "./fabric-panel";
 import { PriceLine, ProductCard, ProductVisual } from "./product-card";
+import { SizeGuide } from "./size-guide";
 import { TryOn } from "./try-on";
+import { WishlistToggle } from "./wishlist-toggle";
 
 export function Pdp({ product, related }: { product: Product; related: Product[] }) {
   const [color, setColor] = useState(product.colors[0]);
@@ -19,6 +21,8 @@ export function Pdp({ product, related }: { product: Product; related: Product[]
   const [note, setNote] = useState("");
   const add = useStore((state) => state.add);
   const stock = product.stock?.[size] ?? product.inventory[size] ?? 0;
+  const [heroImage, setHeroImage] = useState(product.image);
+  const gallery = product.gallery_images ?? [];
 
   return (
     <article className="page grid gap-10 py-8 lg:grid-cols-2">
@@ -29,9 +33,42 @@ export function Pdp({ product, related }: { product: Product; related: Product[]
             color={color.hex}
             weave={product.fabric.weave}
             name={product.name}
-            image={product.image}
+            image={heroImage}
           />
         </div>
+        {gallery.length > 0 ? (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {product.image ? (
+              <button
+                type="button"
+                className="h-14 w-14 overflow-hidden border border-[var(--line)]"
+                onClick={() => setHeroImage(product.image)}
+              >
+                <img src={product.image} alt="" className="h-full w-full object-cover" />
+              </button>
+            ) : null}
+            {gallery.map((url) => (
+              <button
+                key={url}
+                type="button"
+                className="h-14 w-14 overflow-hidden border border-[var(--line)]"
+                onClick={() => setHeroImage(url)}
+              >
+                <img src={url} alt="" className="h-full w-full object-cover" />
+              </button>
+            ))}
+          </div>
+        ) : null}
+        {(product.lookbook_images?.length ?? 0) > 0 ? (
+          <div className="mt-4">
+            <p className="eyebrow mb-2">Lookbook</p>
+            <div className="flex gap-2 overflow-x-auto pb-1">
+              {product.lookbook_images!.map((url) => (
+                <img key={url} src={url} alt="Lookbook" className="h-24 w-20 object-cover border border-[var(--line)] shrink-0" />
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
       <div>
         <p className="eyebrow">
@@ -98,9 +135,11 @@ export function Pdp({ product, related }: { product: Product; related: Product[]
             Add to bag
           </button>
           <button className="btn btn-madder" onClick={() => setTryOpen(true)}>
-            Try it on me
+            Try on AI model
           </button>
+          <WishlistToggle productId={product.id} colorName={color.name} />
         </div>
+        <SizeGuide audience={product.audience} silhouette={product.silhouette} />
         {note && <p className="mt-3 text-sm">{note}</p>}
         <div className="mt-10">
           <FabricPanel fabric={product.fabric} />

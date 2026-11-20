@@ -21,6 +21,7 @@ export function Footer() {
           <Link to="/catalog?audience=women">Women</Link>
           <Link to="/catalog/activewear">Activewear</Link>
           <Link to="/catalog/sportwear">Sportwear</Link>
+          <Link to="/catalog/combo-offers">Combo Offers</Link>
           <Link to="/catalog">All clothing</Link>
         </div>
         <div className="grid content-start gap-2 text-sm">

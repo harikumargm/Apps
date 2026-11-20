@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ApiError, api } from "@/lib/api";
 import { inr } from "@/lib/format";
 import type { Order } from "@/lib/types";
+import { OrderTracker } from "./order-tracker";
 
 export function OrderView({ id }: { id: string }) {
   const [order, setOrder] = useState<Order | null>(null);
@@ -34,6 +35,7 @@ export function OrderView({ id }: { id: string }) {
             </li>
           ))}
         </ol>
+        <OrderTracker orderId={order.id} initial={order} />
         {upi && (
           <p className="mt-6 text-sm">
             UPI reference <span className="break-all">{upi}</span>

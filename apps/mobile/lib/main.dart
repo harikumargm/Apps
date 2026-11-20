@@ -7,17 +7,17 @@ import "ui/features/shop/views/shop_views.dart";
 
 void main() {
   setupDependencies();
-  runApp(const ProviderScope(child: SutraApp()));
+  runApp(const ProviderScope(child: ScvApp()));
 }
 
-class SutraApp extends StatelessWidget {
-  const SutraApp({super.key});
+class ScvApp extends StatelessWidget {
+  const ScvApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Sai Cotton Vastram Store",
-      theme: sutraTheme(),
+      theme: scvTheme(),
       home: const StudioShell(),
     );
   }
@@ -43,7 +43,7 @@ class _StudioShellState extends State<StudioShell> {
       body: pages[index],
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,
-        backgroundColor: SutraColors.paper,
+        backgroundColor: ScvColors.paper,
         onDestinationSelected: (value) => setState(() => index = value),
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home_outlined), label: "Home"),

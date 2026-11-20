@@ -123,9 +123,82 @@ class Database:
                 expires_at REAL NOT NULL
             )
             """,
+            """
+            CREATE TABLE IF NOT EXISTS wishlists (
+                user_id TEXT NOT NULL,
+                product_id TEXT NOT NULL,
+                color_name TEXT NOT NULL DEFAULT '',
+                created_at TEXT NOT NULL,
+                PRIMARY KEY (user_id, product_id, color_name)
+            )
+            """,
+            """
+            CREATE TABLE IF NOT EXISTS inventory_logs (
+                id TEXT PRIMARY KEY,
+                sku TEXT NOT NULL,
+                delta INTEGER NOT NULL,
+                reason TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            )
+            """,
+            """
+            CREATE TABLE IF NOT EXISTS webhook_events (
+                id TEXT PRIMARY KEY,
+                provider TEXT NOT NULL,
+                event_type TEXT NOT NULL,
+                payload TEXT NOT NULL,
+                processed INTEGER NOT NULL DEFAULT 0,
+                created_at TEXT NOT NULL
+            )
+            """,
+            """
+            CREATE TABLE IF NOT EXISTS product_ingest_jobs (
+                id TEXT PRIMARY KEY,
+                status TEXT NOT NULL,
+                payload TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            )
+            """,
+            """
+            CREATE TABLE IF NOT EXISTS try_on_jobs (
+                id TEXT PRIMARY KEY,
+                user_id TEXT,
+                session_id TEXT,
+                product_slug TEXT NOT NULL,
+                preset_model TEXT,
+                status TEXT NOT NULL,
+                input TEXT NOT NULL,
+                result TEXT,
+                created_at TEXT NOT NULL
+            )
+            """,
+            """
+            CREATE TABLE IF NOT EXISTS studio_catalog_publications (
+                id TEXT PRIMARY KEY,
+                product_id TEXT NOT NULL,
+                section TEXT NOT NULL,
+                image_url TEXT NOT NULL,
+                preset_label TEXT,
+                studio_output_id TEXT,
+                created_at TEXT NOT NULL
+            )
+            """,
         ]
         for statement in statements:
             self.execute(statement)
+        self._ensure_column("orders", "tracking_code", "TEXT")
+        self._ensure_column("orders", "cod_otp_verified", "INTEGER NOT NULL DEFAULT 0")
+
+    def _ensure_column(self, table: str, column: str, typedef: str) -> None:
+        if self.kind == "sqlite":
+            rows = self.query(f"PRAGMA table_info({table})", ())
+            if any(row["name"] == column for row in rows):
+                return
+            self.execute(f"ALTER TABLE {table} ADD COLUMN {column} {typedef}")
+        else:
+            self.execute(
+                f"ALTER TABLE {table} ADD COLUMN IF NOT EXISTS {column} {typedef}",
+            )
 
     def close(self) -> None:
         if self.kind == "sqlite":

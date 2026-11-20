@@ -12,10 +12,17 @@ const FABRICS = ["Cotton", "Silk", "Linen", "Synthetic blend"];
 const COLLECTIONS = {
   activewear: "Activewear",
   sportwear: "Sportwear",
+  combo_offers: "Combo Offers",
 } as const;
 
+const COLLECTION_PATHS: Record<keyof typeof COLLECTIONS, string> = {
+  activewear: "/catalog/activewear",
+  sportwear: "/catalog/sportwear",
+  combo_offers: "/catalog/combo-offers",
+};
+
 export function CatalogBrowser({ collection }: { collection?: keyof typeof COLLECTIONS }) {
-  const params = useSearchParams();
+  const [params] = useSearchParams();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -36,7 +43,7 @@ export function CatalogBrowser({ collection }: { collection?: keyof typeof COLLE
       if (!value) query.delete(key);
       else query.set(key, value);
     }
-    const path = collection ? `/catalog/${collection}` : "/catalog";
+    const path = collection ? COLLECTION_PATHS[collection] : "/catalog";
     navigate({ pathname: path, search: query.toString() }, { replace: true });
   }
 
